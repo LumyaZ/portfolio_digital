@@ -23,5 +23,48 @@
         "story": "Story",
         "about": "About me"
       }
+    },
+    "projects": {
+        "kicker": "Selection",
+        "title": "Projects",
+        "intro": "A few representative builds: architecture, back-end, front-end, and tooling. Detailed case studies will come in a later version.",
+        "v2Hint": "Full project page — coming soon",
+        "items": {
+            "portfolio": {
+                "badge": "Full-Stack",
+                "title": "Digital portfolio",
+                "hoverTitle": "Digital portfolio",
+                "description": "Multilingual showcase site with a polished experience and strong performance.",
+                "tags": "Next.js, TypeScript, Tailwind"
+            },
+            "saas-dashboard": {
+                "badge": "SaaS",
+                "title": "Analytics dashboard",
+                "hoverTitle": "Analytics dashboard",
+                "description": "Metrics aggregation UI with dynamic filters and real-time views.",
+                "tags": "React, Node.js, PostgreSQL"
+            },
+            "api-gateway": {
+                "badge": "API",
+                "title": "API gateway & auth",
+                "hoverTitle": "API gateway & auth",
+                "description": "Orchestration layer across internal services with centralized auth and rate limiting.",
+                "tags": "REST, OAuth2, Docker"
+            },
+            "data-pipeline": {
+                "badge": "Data",
+                "title": "ETL pipeline",
+                "hoverTitle": "ETL pipeline",
+                "description": "Ingestion, transformation, and load jobs into a warehouse with scheduling and monitoring.",
+                "tags": "Python, PostgreSQL, CI/CD"
+            },
+            "mobile-app": {
+                "badge": "Mobile",
+                "title": "Companion mobile app",
+                "hoverTitle": "Companion mobile app",
+                "description": "Light client synced with the backend for quick actions on the go.",
+                "tags": "Angular, API, UX"
+            }
+        }
     }
-  }
+}
