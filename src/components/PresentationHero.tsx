@@ -1,13 +1,12 @@
 import {useTranslations} from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import Image from "next/image";
 import { SKILLS } from "@/data/skill";
 
 export default function PresentationHero() {
   const t = useTranslations("presentation");
 
   return (
-    <section className="flex items-start">
+    <section className="flex min-h-screen flex-col">
         <div className="mx-auto w-full max-w-7xl px-6 py-10 sm:py-12 lg:py-16">
             <div className="grid items-start gap-10 sm:grid-cols-[6fr_4fr]">
                 <div className="space-y-6 lg:space-y-8 min-w-0">

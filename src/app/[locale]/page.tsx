@@ -1,7 +1,11 @@
 import PresentationHero from "@/components/PresentationHero";
-import { useTranslations } from "next-intl";
+import SiteNavbar from "@/components/SiteNavBar";
 
 export default function Home() {
-  const t = useTranslations("home");
-  return <PresentationHero />;
+  return (
+    <>
+      <PresentationHero />
+      <SiteNavbar />
+    </>
+  );
 }

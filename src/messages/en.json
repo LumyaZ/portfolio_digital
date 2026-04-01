@@ -4,10 +4,24 @@
       "intro": "Hello, I'm a developer. This site will be completed soon."
     },
     "presentation": {
-        "kicker": "DIGITAL PORTFOLIO",
-        "name": "CORNU Thomas",
-        "role": "Full-Stack Developer",
-        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "downloadCv": "Download CV"
+      "kicker": "DIGITAL PORTFOLIO",
+      "name": "CORNU Thomas",
+      "role": "Full-Stack Developer",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "downloadCv": "Download CV"
+    },
+    "nav": {
+      "aria": "Main navigation",
+      "brandName": "Thomas Cornu",
+      "brandRole": "Developer",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "links": {
+        "projects": "Projects",
+        "training": "Training",
+        "tech": "Technologies",
+        "story": "Story",
+        "about": "About me"
+      }
     }
   }
