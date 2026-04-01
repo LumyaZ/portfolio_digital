@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 import {Geist, Geist_Mono} from "next/font/google";
 import {NextIntlClientProvider} from "next-intl";
-
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -44,6 +44,10 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <header className="flex justify-between items-center p-4">
+            <h1 className="text-2xl font-bold">Portfolio Digital</h1>
+            <LanguageSwitcher />
+          </header>
           {children}
         </NextIntlClientProvider>
       </body>
