@@ -1,5 +1,7 @@
 import {useTranslations} from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Image from "next/image";
+import { SKILLS } from "@/data/skill";
 
 export default function PresentationHero() {
   const t = useTranslations("presentation");
@@ -7,8 +9,8 @@ export default function PresentationHero() {
   return (
     <section className="flex items-start">
       <div className="mx-auto w-full max-w-7xl px-6 py-10 sm:py-12 lg:py-16">
-        <div className="grid items-center gap-10 md:grid-cols-[7fr_3fr]">
-          <div className="space-y-6 lg:space-y-8">
+        <div className="grid items-start gap-10 sm:grid-cols-[6fr_4fr]">
+          <div className="space-y-6 lg:space-y-8 min-w-0">
             <div className="flex justify-start">
                 <LanguageSwitcher />
             </div>
@@ -32,8 +34,26 @@ export default function PresentationHero() {
             </p>
           </div>
 
-          <div className="order-last md:order-last">
-            <div className="aspect-square w-full max-w-md md:max-w-lg rounded-2xl border bg-gradient-to-br from-zinc-100 to-white" />          
+          <div className="order-last md:order-last min-w-0">
+            <div className="flex flex-col gap-4">
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {SKILLS.map((skill) => (
+                  <li key={skill.id}>
+                    <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center transition hover:border-[#0F6B78]/40 hover:shadow-sm">
+                    <img
+                        src={skill.iconSrc}
+                        alt=""
+                        width={64}
+                        height={64}
+                        className="h-16 w-16 object-contain"
+                        loading="lazy"
+                        aria-hidden
+                    />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
         </div>
