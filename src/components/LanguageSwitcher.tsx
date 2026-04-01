@@ -4,27 +4,38 @@ import {useLocale} from "next-intl";
 import {usePathname, useRouter} from "next/navigation";
 
 const locales = ["fr", "en"] as const;
+type Locale = (typeof locales)[number];
 
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
 
-  function switchTo(nextLocale: (typeof locales)[number]) {
+  function goTo(nextLocale: Locale) {
+    if (nextLocale === locale) return;
     const nextPathname = pathname.replace(/^\/(fr|en)(?=\/|$)/, `/${nextLocale}`);
     router.push(nextPathname);
   }
 
-  const otherLocale = locale === "fr" ? "en" : "fr";
-
   return (
-    <button
-      type="button"
-      onClick={() => switchTo(otherLocale)}
-      className="rounded-md border px-3 py-1 text-sm hover:bg-black/5 dark:hover:bg-white/10"
-      aria-label={`Changer la langue en ${otherLocale.toUpperCase()}`}
-    >
-      {otherLocale.toUpperCase()}
-    </button>
+    <div className="inline-flex items-center rounded-md bg-zinc-100 p-1 text-sm">
+      {locales.map((l) => {
+        const active = l === locale;
+        return (
+          <button
+            key={l}
+            type="button"
+            onClick={() => goTo(l)}
+            aria-current={active ? "true" : undefined}
+            className={[
+              "px-3 py-1 rounded",
+              active ? "bg-[#0F6B78] text-white" : "text-[#0F6B78] hover:bg-black/5"
+            ].join(" ")}
+          >
+            {l.toUpperCase()}
+          </button>
+        );
+      })}
+    </div>
   );
 }
