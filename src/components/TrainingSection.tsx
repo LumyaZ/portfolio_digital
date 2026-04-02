@@ -240,11 +240,6 @@ export default function TrainingSection() {
           >
             {t("title")}
           </h2>
-          {t.has("intro") && (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-              {t("intro")}
-            </p>
-          )}
         </header>
       </div>
 

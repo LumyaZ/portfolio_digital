@@ -2,8 +2,11 @@ import {useTranslations} from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { SKILLS } from "@/data/skill";
 
+const HERO_EXCLUDED_SKILL_IDS = new Set(["git", "uipath"]);
+
 export default function PresentationHero() {
   const t = useTranslations("presentation");
+  const heroSkills = SKILLS.filter((s) => !HERO_EXCLUDED_SKILL_IDS.has(s.id));
 
   return (
     <section className="flex min-h-screen flex-col">
@@ -54,7 +57,7 @@ export default function PresentationHero() {
                 <div className="order-last md:order-last min-w-0">
                     <div className="flex flex-col gap-4">
                         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                            {SKILLS.map((skill) => (
+                            {heroSkills.map((skill) => (
                             <li key={skill.id}>
                                 <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center transition hover:border-[#0F6B78]/40 hover:shadow-sm">
                                     <img

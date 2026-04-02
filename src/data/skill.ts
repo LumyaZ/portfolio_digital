@@ -59,10 +59,8 @@ export const SKILLS: Skill[] = [
     iconSrc: devicon("mysql", "mysql-original.svg")
   },
 
-  // HTML (icône HTML5)
   { id: "html5", name: "HTML5", iconSrc: devicon("html5", "html5-original.svg") },
 
-  // Ajouts demandés
   { id: "php", name: "PHP", iconSrc: devicon("php", "php-original.svg") },
   { id: "git", name: "Git", iconSrc: devicon("git", "git-original.svg") },
   { id: "uipath", name: "UiPath", iconSrc: `${SIMPLE_ICONS_CDN}/uipath.svg` },
@@ -92,11 +90,6 @@ export const SKILLS: Skill[] = [
     id: "rest",
     name: "REST APIs",
     iconSrc: `${SIMPLE_ICONS_CDN}/postman.svg`
-  },
-  {
-    id: "junit",
-    name: "JUnit",
-    iconSrc: devicon("junit", "junit-plain.svg")
   },
   {
     id: "cybersecurite",
