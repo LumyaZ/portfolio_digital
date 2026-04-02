@@ -66,5 +66,38 @@
                 "tags": "Angular, API, UX"
             }
         }
-    }
+    },
+    "training": {
+        "title": "Training",
+        "intro": "Academic path and certifications.",
+        "items": {
+          "master": {
+            "dateRange": "2023 — 2025",
+            "duration": "2 years",
+            "location": "Lille · Ynov Campus",
+            "degree": "Master",
+            "program": "Full Stack Development Expert",
+            "tags": "Docker, Vue.js, Kubernetes, AWS, UiPath",
+            "bullets": "Full Stack application design and development|Software quality & responsible development|Advanced web and cloud development"
+          },
+          "bachelor": {
+            "dateRange": "2022 — 2023",
+            "duration": "1 year",
+            "location": "Lille · Ynov Campus",
+            "degree": "Bachelor",
+            "program": "Computer Development",
+            "tags": "Node.js, React, Angular, Python, MongoDB",
+            "bullets": "Design and implement a solution|Modern JavaScript frameworks|Participate in cybersecurity management"
+          },
+          "bts": {
+            "dateRange": "2020 — 2022",
+            "duration": "2 years",
+            "location": "Lycée Saint Joseph\nBoulogne-sur-Mer",
+            "degree": "BTS",
+            "program": "IT Services for Organizations — SLAM",
+            "tags": "HTML/CSS, Java, PHP, SQL, Git",
+            "bullets": "Fundamentals of web development|Basic concepts of object-oriented programming|Database management"
+          }
+        }
+      }
 }

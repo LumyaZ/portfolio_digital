@@ -14,7 +14,6 @@ function devicon(folder: string, file: string): string {
   return `${DEVICON_CDN}/${folder}/${file}`;
 }
 
-
 export const SKILLS: Skill[] = [
   { id: "docker", name: "Docker", iconSrc: devicon("docker", "docker-original.svg") },
   {
@@ -59,7 +58,15 @@ export const SKILLS: Skill[] = [
     name: "SQL",
     iconSrc: devicon("mysql", "mysql-original.svg")
   },
+
+  // HTML (icône HTML5)
   { id: "html5", name: "HTML5", iconSrc: devicon("html5", "html5-original.svg") },
+
+  // Ajouts demandés
+  { id: "php", name: "PHP", iconSrc: devicon("php", "php-original.svg") },
+  { id: "git", name: "Git", iconSrc: devicon("git", "git-original.svg") },
+  { id: "uipath", name: "UiPath", iconSrc: `${SIMPLE_ICONS_CDN}/uipath.svg` },
+
   { id: "java", name: "Java", iconSrc: devicon("java", "java-original.svg") },
   {
     id: "springboot",
