@@ -99,5 +99,45 @@
             "bullets": "Fondamentaux du développement web|Bases de la programmation orientée objet|Gestion de bases de données"
           }
         }
-      }
+    },
+    "story": {
+        "title": "Histoire",
+        "readMore": "Lire le détail",
+        "carouselHint": "Défilement automatique toutes les {seconds} secondes — cliquez sur une carte pour la sélectionner.",
+        "carouselAria": "Fil chronologique du parcours",
+        "carouselDots": "Indicateurs du carrousel",
+        "goToSlide": "Aller au volet {index}",
+        "expandDetails": "Afficher ou masquer le détail",
+        "timeline": {
+            "bts": {
+                "period": "2020 — 2022",
+                "label": "BTS SIO SLAM",
+                "short": "Bases du développement et des réseaux."
+            },
+            "ynov": {
+                "period": "2022 — 2025",
+                "label": "Ynov Campus",
+                "short": "Bachelor puis Master Full Stack à Lille."
+            },
+            "alternance": {
+                "period": "2023 — 2025",
+                "label": "Alternance",
+                "short": "Expérience en entreprise, au cœur de mon parcours."
+            }
+        },
+        "detail": {
+            "bts": {
+                "title": "BTS SIO — option SLAM",
+                "body": "Texte ici : ce que tu as appris, ce qui t’a plu, ce que tu retiens de cette période."
+            },
+            "ynov": {
+                "title": "Ynov Campus",
+                "body": "Texte ici : cursus, projets marquants, compétences consolidées."
+            },
+            "alternance": {
+                "title": "L’alternance",
+                "body": "Texte plus long ici : entreprise, missions, apprentissages, en quoi c’est central pour toi."
+            }
+        }
+    }
   }

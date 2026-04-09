@@ -99,5 +99,45 @@
             "bullets": "Fundamentals of web development|Basic concepts of object-oriented programming|Database management"
           }
         }
-      }
+    },
+    "story": {
+        "title": "Story",
+        "readMore": "Read more",
+        "carouselHint": "Auto-advance every {seconds} seconds — click a card to select it.",
+        "carouselAria": "Journey timeline carousel",
+        "carouselDots": "Carousel indicators",
+        "goToSlide": "Go to slide {index}",
+        "expandDetails": "Show or hide details",
+        "timeline": {
+            "bts": {
+                "period": "2020 — 2022",
+                "label": "BTS SIO SLAM",
+                "short": "Fundamentals of web development and networks."
+            },
+            "ynov": {
+                "period": "2022 — 2025",
+                "label": "Ynov Campus",
+                "short": "Bachelor then Master Full Stack in Lille."
+            },
+            "alternance": {
+                "period": "2023 — 2025",
+                "label": "Work-study",
+                "short": "On-the-job experience at the heart of my path."
+            }
+        },
+        "detail": {
+            "bts": {
+                "title": "BTS SIO — SLAM track",
+                "body": "Text here: what you learned, what you liked, what you retain from this period."
+            },
+            "ynov": {
+                "title": "Ynov Campus",
+                "body": "Text here: curriculum, notable projects, consolidated skills."
+            },
+            "alternance": {
+                "title": "Work-study",
+                "body": "Longer text here: company, missions, learning, what matters most to you."
+            }
+        }
+    }
 }
