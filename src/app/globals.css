@@ -12,6 +12,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -65,6 +69,32 @@ body {
   .animate-story-slot-in {
     animation: none;
     opacity: 1;
+    transform: none;
+  }
+}
+
+/* À propos : piles + apparition liée par rang (--pair-row) */
+@keyframes about-stack-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.65rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-stack-card {
+  opacity: 0;
+  animation: about-stack-in 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--pair-row, 0) * 0.22s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-stack-card {
+    opacity: 1;
+    animation: none;
     transform: none;
   }
 }

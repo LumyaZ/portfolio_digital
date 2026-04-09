@@ -139,5 +139,36 @@
                 "body": "Texte plus long ici : entreprise, missions, apprentissages, en quoi c’est central pour toi."
             }
         }
+    },
+    "about": {
+        "kicker": "Au-delà du code",
+        "title": "À propos de moi",
+        "intro": "Le développement occupe une grande place dans mon parcours, mais ce n’est pas tout ce qui me définit. Voici ce qui nourrit mon équilibre au quotidien : énergie, curiosité et envie de bouger.",
+        "passions": {
+            "music": {
+                "title": "Musique & festivals",
+                "body": "J’aime découvrir des artistes, aller aux concerts et profiter de l’électricité des festivals. Partager un moment live, entouré de monde, reste pour moi une des sensations les plus simples et les plus fortes."
+            },
+            "running": {
+                "title": "Course à pied",
+                "body": "La course, c’est mon exutoire : sortir, caler le rythme sur la respiration, repousser un peu le curseur à chaque sortie. Un bon moyen de quitter l’écran et de garder la tête claire."
+            },
+            "gaming": {
+                "title": "Jeux vidéo",
+                "body": "Entre récits solo et parties entre amis, le gaming est un terrain d’exploration, de stratégie et parfois de compétition saine — un autre univers où on progresse, on se plante, et on recommence."
+            },
+            "travel": {
+                "title": "Voyages",
+                "body": "Voyager, c’est élargir le cadre : nouveaux paysages, nouvelles habitudes, et souvent de meilleures conversations. J’aime tracer un itinéraire tout en gardant de la marge pour l’imprévu."
+            },
+            "nba": {
+                "title": "NBA",
+                "body": "Je suis la NBA pour le spectacle, le niveau d’exigence et les histoires d’équipes qui se construisent sur la durée. Les soirs de match, c’est un bon rythme pour se poser et suivre une saison du premier au dernier quart-temps."
+            },
+            "cooking": {
+                "title": "Cuisine",
+                "body": "J’aime cuisiner, découvrir de nouvelles recettes et partager des plats avec des amis. Cuisiner est un moyen de se relaxer et de se sentir bien."
+            }
+        }
     }
   }

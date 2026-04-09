@@ -139,5 +139,37 @@
                 "body": "Longer text here: company, missions, learning, what matters most to you."
             }
         }
+    },
+    "about": {
+        "kicker": "Beyond code",
+        "title": "About me",
+        "intro": "Development is a big part of my path, but it’s not the whole story. Here’s what keeps me balanced day to day: energy, curiosity, and the need to keep moving.",
+        "passions": {
+            "music": {
+                "title": "Music & festivals",
+                "body": "I love discovering artists, going to gigs, and soaking up festival crowds. Sharing a live moment with people around you is still one of the simplest, strongest feelings I know."
+            },
+            "running": {
+                "title": "Running",
+                "body": "Running is my reset: get outside, sync pace with breathing, push the bar a little each time. A solid way to step away from the screen and clear my head."
+            },
+            "gaming": {
+                "title": "Gaming",
+                "body": "From story-driven solo games to sessions with friends, gaming is space for exploration, strategy, and sometimes friendly competition — another world where you improve, fail, and try again."
+            },
+            "travel": {
+                "title": "Travel",
+                "body": "Travel widens the frame: new landscapes, new habits, and often better conversations. I like sketching an itinerary while leaving room for the unexpected."
+            },
+            "nba": {
+                "title": "NBA",
+                "body": "I follow the NBA for the show, the standard of play, and team arcs that unfold over a season. Game nights are a steady rhythm to unwind and follow the story from tip-off to the final buzzer."
+            },
+            "cooking": {
+                "title": "Cooking",
+                "body": "I love cooking, discovering new recipes, and sharing meals with friends. Cooking is a way to relax and feel good."
+            }
+        }
     }
+    
 }
