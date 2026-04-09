@@ -170,5 +170,32 @@
                 "body": "J’aime cuisiner, découvrir de nouvelles recettes et partager des plats avec des amis. Cuisiner est un moyen de se relaxer et de se sentir bien."
             }
         }
-    }
+    },
+    "tech": {
+        "kicker": "Stack",
+        "title": "Technologies",
+        "intro": "Outils et environnements que j’utilise au quotidien, regroupés par domaine.",
+        "categories": {
+          "frontend": {
+            "title": "Front-end",
+            "description": "Interfaces, langages et frameworks côté navigateur."
+          },
+          "backend": {
+            "title": "Back-end & APIs",
+            "description": "Logique serveur, langages et exposition de services."
+          },
+          "data": {
+            "title": "Données",
+            "description": "Stockage et requêtage relationnel ou document."
+          },
+          "cloud": {
+            "title": "Cloud & DevOps",
+            "description": "Conteneurs, orchestration, cloud et chaîne de livraison."
+          },
+          "other": {
+            "title": "Automatisation & transversal",
+            "description": "RPA, sécurité et sujets qui traversent plusieurs couches."
+          }
+        }
+      }
   }

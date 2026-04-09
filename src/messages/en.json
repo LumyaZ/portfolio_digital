@@ -170,6 +170,33 @@
                 "body": "I love cooking, discovering new recipes, and sharing meals with friends. Cooking is a way to relax and feel good."
             }
         }
-    }
+    },
+    "tech": {
+        "kicker": "Stack",
+        "title": "Technologies",
+        "intro": "Tools and environments I work with, grouped by area.",
+        "categories": {
+          "frontend": {
+            "title": "Front-end",
+            "description": "UI languages and frameworks."
+          },
+          "backend": {
+            "title": "Back-end & APIs",
+            "description": "Server-side logic, languages, and APIs."
+          },
+          "data": {
+            "title": "Data",
+            "description": "Relational and document storage."
+          },
+          "cloud": {
+            "title": "Cloud & DevOps",
+            "description": "Containers, orchestration, cloud, and delivery."
+          },
+          "other": {
+            "title": "Automation & cross-cutting",
+            "description": "RPA, security, and skills that span several layers."
+          }
+        }
+      }
     
 }

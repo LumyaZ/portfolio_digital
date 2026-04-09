@@ -98,3 +98,48 @@ export const SKILLS: Skill[] = [
       "https://upload.wikimedia.org/wikipedia/commons/6/64/CNIL_logo_2016.svg"
   },
 ];
+
+
+export type SkillCategoryId =
+  | "frontend"
+  | "backend"
+  | "data"
+  | "cloud"
+  | "other";
+
+export type SkillCategory = {
+  id: SkillCategoryId;
+  skillIds: string[];
+};
+
+/** Répartition des `Skill.id` par catégorie (ordre d’affichage = ordre du tableau). */
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: "frontend",
+    skillIds: ["html5", "typescript", "react", "vuejs", "angular", "nextjs"]
+  },
+  {
+    id: "backend",
+    skillIds: ["nodejs", "php", "java", "springboot", "python", "rest"]
+  },
+  {
+    id: "data",
+    skillIds: ["postgresql", "mongodb", "mysql"]
+  },
+  {
+    id: "cloud",
+    skillIds: ["docker", "kubernetes", "aws", "git", "github"]
+  },
+  {
+    id: "other",
+    skillIds: ["uipath", "cybersecurite"]
+  }
+];
+
+const skillById = new Map(SKILLS.map((s) => [s.id, s]));
+
+export function getSkillsForCategory(category: SkillCategory): Skill[] {
+  return category.skillIds
+    .map((id) => skillById.get(id))
+    .filter((s): s is Skill => s !== undefined);
+}
