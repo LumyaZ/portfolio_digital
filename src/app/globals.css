@@ -49,6 +49,29 @@ body {
   }
 }
 
+@keyframes hero-skill-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.625rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-skill-item {
+  opacity: 0;
+  animation: hero-skill-row-in 0.55s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-skill-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 
 @keyframes story-slot-in {
   from {
