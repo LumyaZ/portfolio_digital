@@ -30,40 +30,33 @@
         "intro": "A few representative builds: architecture, back-end, front-end, and tooling. Detailed case studies will come in a later version.",
         "v2Hint": "Full project page — coming soon",
         "items": {
-            "portfolio": {
-                "badge": "Full-Stack",
-                "title": "Digital portfolio",
-                "hoverTitle": "Digital portfolio",
-                "description": "Multilingual showcase site with a polished experience and strong performance.",
-                "tags": "Next.js, TypeScript, Tailwind"
+            "dynatrust": {
+                "badge": "Developer | Intern",
+                "title": "Dynatrust",
+                "hoverTitle": "Dynatrust software",
+                "description": "GRC software developed during my internship at DYNATRUST, the goal was to develop the SaaS solution aiming to establish a management compliant with international standards and norms in cybersecurity.",
+                "tags": "Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Python, GitLab CI/CD"
+            },  
+            "musculia": {
+                "badge": "Full-Stack Developer",
+                "title": "Musculia",
+                "hoverTitle": "Musculia application",
+                "description": "Web application for personalized muscle training generation using AI, adapted to each user.",
+                "tags": "Java, Spring Boot, MySQL, Python, AI, Docker"
             },
-            "saas-dashboard": {
-                "badge": "SaaS",
-                "title": "Analytics dashboard",
-                "hoverTitle": "Analytics dashboard",
-                "description": "Metrics aggregation UI with dynamic filters and real-time views.",
-                "tags": "React, Node.js, PostgreSQL"
+            "ytechUnion": {
+                "badge": "Full-Stack Developer",
+                "title": "YtechUnion",
+                "hoverTitle": "Web agency YtechUnion",
+                "description": "Web agency creating portfolio sites for student and professional projects. Development of sites from the mockup to hosting.",
+                "tags": "React, Next.js, Tailwind CSS, TypeScript, Figma"
             },
-            "api-gateway": {
-                "badge": "API",
-                "title": "API gateway & auth",
-                "hoverTitle": "API gateway & auth",
-                "description": "Orchestration layer across internal services with centralized auth and rate limiting.",
-                "tags": "REST, OAuth2, Docker"
-            },
-            "data-pipeline": {
-                "badge": "Data",
-                "title": "ETL pipeline",
-                "hoverTitle": "ETL pipeline",
+            "craft2give": {
+                "badge": "Front-End Developer | participant & donor",
+                "title": "Craft2Give",
+                "hoverTitle": "Craft2Give project",
                 "description": "Ingestion, transformation, and load jobs into a warehouse with scheduling and monitoring.",
-                "tags": "Python, PostgreSQL, CI/CD"
-            },
-            "mobile-app": {
-                "badge": "Mobile",
-                "title": "Companion mobile app",
-                "hoverTitle": "Companion mobile app",
-                "description": "Light client synced with the backend for quick actions on the go.",
-                "tags": "Angular, API, UX"
+                "tags": "React, Twitch"
             }
         }
     },

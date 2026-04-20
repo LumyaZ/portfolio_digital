@@ -30,40 +30,33 @@
         "intro": "Quelques réalisations représentatives : architecture, back-end, front et outillage. Les fiches détaillées arriveront dans une prochaine version.",
         "v2Hint": "Fiche projet détaillée — bientôt",
         "items": {
-            "portfolio": {
-                "badge": "Full-Stack",
-                "title": "Portfolio digital",
-                "hoverTitle": "Portfolio digital",
-                "description": "Site vitrine multilingue, performance et mise en avant des compétences avec une expérience soignée.",
-                "tags": "Next.js, TypeScript, Tailwind"
+              "dynatrust": {
+                "badge": "Développeur | Alternance",
+                "title": "Dynatrust",
+                "hoverTitle": "Logiciel Dynatrust",
+                "description": "Logiciel GRC développé pendant mon alternance chez DYNATRUST, l'objectif était de développer la solution SaaS visant à instaurer une gestion conforme aux standards et normes internationales en cybersécurité.",
+                "tags": "Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Python, GitLab CI/CD"
             },
-            "saas-dashboard": {
-                "badge": "SaaS",
-                "title": "Tableau de bord analytique",
-                "hoverTitle": "Tableau de bord analytique",
-                "description": "Interface d’agrégation de métriques, filtres dynamiques et visualisations pour suivre l’activité en temps réel.",
-                "tags": "React, Node.js, PostgreSQL"
+            "musculia": {
+                "badge": "Développeur Full-Stack",
+                "title": "Musculia",
+                "hoverTitle": "Application Musculia",
+                "description": "Application Web de musculation personnalisée permettant de générer des programmes de musculation grâce à l'IA, adaptés à chaque utilisateur.",
+                "tags": "Java, Spring Boot, MySQL, Python, AI, Docker"
             },
-            "api-gateway": {
-                "badge": "API",
-                "title": "Passerelle API & auth",
-                "hoverTitle": "Passerelle API & auth",
-                "description": "Couche d’orchestration entre services internes, authentification centralisée et politiques de rate limiting.",
-                "tags": "REST, OAuth2, Docker"
+            "ytechUnion": {
+                "badge": "Chef de Projet | DevOps Web",
+                "title": "YtechUnion",
+                "hoverTitle": "Agence Web YtechUnion",
+                "description": "Agence Web créatrice de sites vitrine pour des projets étudiants et professionnels. Élaboration des sites de la maquette jusqu'à l'hébergement.",
+                "tags": "React, Next.js, Tailwind CSS, TypeScript, Figma"
             },
-            "data-pipeline": {
-                "badge": "Data",
-                "title": "Pipeline ETL",
-                "hoverTitle": "Pipeline ETL",
+            "craft2give": {
+                "badge": "Développeur Front-End | participant & donateur",
+                "title": "Craft2Give",
+                "hoverTitle": "Projet associatif : Craft2Give",
                 "description": "Chaîne d’ingestion, transformation et chargement vers un entrepôt avec jobs planifiés et monitoring.",
-                "tags": "Python, PostgreSQL, CI/CD"
-            },
-            "mobile-app": {
-                "badge": "Mobile",
-                "title": "App mobile companion",
-                "hoverTitle": "App mobile companion",
-                "description": "Client léger synchronisé avec le back-end pour consultation et actions rapides hors bureau.",
-                "tags": "Angular, API, UX"
+                "tags": "React, Twitch"
             }
         }
     },

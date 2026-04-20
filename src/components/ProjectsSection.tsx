@@ -7,11 +7,7 @@ export default async function ProjectsSection() {
   const t = await getTranslations("projects");
 
   return (
-    <section
-      id="projects"
-      className="relative scroll-mt-24 overflow-hidden border-t border-zinc-200/80 py-20 sm:py-28"
-      aria-labelledby="projects-heading"
-    >
+    <section id="projects" className="relative scroll-mt-24 overflow-hidden py-0">
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden
@@ -29,26 +25,10 @@ export default async function ProjectsSection() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <header className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#0F6B78]/90">
-            {t("kicker")}
-          </p>
-          <h2
-            id="projects-heading"
-            className="mt-4 text-4xl font-bold tracking-tight text-[#0F6B78] sm:text-5xl"
-          >
-            {t("title")}
-          </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-600">
-            {t("intro")}
-          </p>
-        </header>
-      </div>
-
-      <ul className="relative mt-16 w-full list-none">
+      <ul className="relative w-full list-none">
         {PROJECT_IDS.map((id: ProjectId, index) => {
           const reverse = index % 2 === 1;
+          const isDynatrust = id === "dynatrust";
           const cover = PROJECT_COVER[id];
           const title = t(`items.${id}.title`);
           const hoverTitle = t(`items.${id}.hoverTitle`);
@@ -57,18 +37,24 @@ export default async function ProjectsSection() {
             ? "-translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100"
             : "translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100";
 
-            const overlayGradient = reverse
+          const overlayGradient = reverse
             ? [
                 "bg-[linear-gradient(to_bottom,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]",
                 "md:bg-[linear-gradient(to_right,rgb(3,3,3)_0%,rgb(3,3,3)_42%,rgb(10,10,10)_50%,rgb(18,18,18)_58%,rgb(18,18,18)_100%)]"
-                ].join(" ")
+              ].join(" ")
             : [
                 "bg-[linear-gradient(to_bottom,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]",
                 "md:bg-[linear-gradient(to_right,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]"
-                ].join(" ");
-        
+              ].join(" ");
+
           return (
-            <li key={id} className="border-t border-zinc-200/70 first:border-t-0">
+            <li key={id} className="border-0">
+              {index > 0 && (
+                <div className="py-3 sm:py-4 md:py-5" aria-hidden>
+                  <div className="mx-auto h-px w-full max-w-[10rem] shrink-0 rounded-full bg-gradient-to-r from-transparent via-[#0F6B78]/35 to-transparent sm:max-w-xs md:max-w-sm lg:max-w-md" />
+                </div>
+              )}
+
               <div
                 className={[
                   "group relative flex min-h-[min(520px,85svh)] flex-col overflow-hidden md:min-h-[50svh] md:flex-row",
@@ -84,14 +70,20 @@ export default async function ProjectsSection() {
                   aria-hidden
                 />
 
-                <figure className="relative z-0 h-56 w-full shrink-0 border-b border-zinc-200/80 md:h-auto md:min-h-[50svh] md:w-1/2 md:border-b-0">
+                <figure
+                  className={[
+                    "relative z-0 h-56 w-full shrink-0 overflow-hidden border-b border-zinc-200/80 md:h-auto md:min-h-[50svh] md:w-1/2 md:border-b-0",
+                    isDynatrust ? "bg-[#5327A7]" : "bg-white"
+                  ].join(" ")}
+                >
                   {cover ? (
                     <Image
                       src={cover}
-                      alt=""
+                      alt={title}
                       fill
-                      className="object-cover"
+                      className="object-contain object-center"
                       sizes="(min-width: 768px) 50vw, 100vw"
+                      priority={index === 0}
                     />
                   ) : (
                     <div
@@ -101,7 +93,6 @@ export default async function ProjectsSection() {
                   )}
                 </figure>
 
-                {/* Titre d’animation : uniquement au survol / focus, pas le h3 du bloc texte */}
                 <div
                   className="pointer-events-none absolute inset-0 z-[22] flex items-center px-6 md:px-12"
                   aria-hidden
@@ -124,8 +115,7 @@ export default async function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Titre « statique » de la carte : masqué au survol (l’animation utilise hoverTitle) */}
-                  <h3 className="px-6 text-2xl font-bold tracking-tight text-zinc-900 transition-opacity duration-300 group-hover:opacity-0 group-hover:invisible group-focus-within:opacity-0 group-focus-within:invisible md:px-10 md:text-3xl lg:px-14">
+                  <h3 className="px-6 text-2xl font-bold tracking-tight text-zinc-900 transition-opacity duration-300 group-hover:invisible group-hover:opacity-0 group-focus-within:invisible group-focus-within:opacity-0 md:px-10 md:text-3xl lg:px-14">
                     {title}
                   </h3>
 
@@ -140,9 +130,7 @@ export default async function ProjectsSection() {
                         .filter(Boolean)
                         .join(" · ")}
                     </p>
-                    <p className="text-xs font-medium text-zinc-400">
-                      {t("v2Hint")}
-                    </p>
+                    <p className="text-xs font-medium text-zinc-400">{t("v2Hint")}</p>
                   </div>
                 </div>
               </div>

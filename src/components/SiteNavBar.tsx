@@ -22,7 +22,7 @@ export default function SiteNavBar() {
 
   return (
     <nav
-      className="sticky top-0 z-50 border-b border-[#0F6B78]/40 bg-[#fafafa]/95 text-[#0F6B78] backdrop-blur supports-[backdrop-filter]:bg-[#fafafa]/80"
+      className="sticky top-0 z-50 border-b border-[#0F6B78]/40 bg-[#fafafa]/95 text-[#0F6B78] backdrop-blur supports-backdrop-filter:bg-[#fafafa]/80"
       aria-label={t("aria")}
     >
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 sm:py-4">
