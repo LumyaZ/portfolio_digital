@@ -9,26 +9,29 @@ export default function TechSection() {
   return (
     <section
       id="tech"
-      className="relative scroll-mt-24 border-t border-zinc-200/80 bg-[#fafafa] py-20 sm:py-28"
+      className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/80 py-20 sm:py-28"
       aria-labelledby="tech-heading"
     >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(#0F6B78_0.8px,transparent_0.8px)] [background-size:22px_22px]"
+        aria-hidden
+      />
+
       <div className="relative mx-auto max-w-7xl px-6">
         <header className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#0F6B78]/90">
-            {t("kicker")}
-          </p>
           <h2
             id="tech-heading"
             className="mt-4 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
           >
             {t("title")}
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-zinc-600 sm:text-lg">
-            {t("intro")}
-          </p>
         </header>
 
-        <div className="mx-auto mt-14 max-w-5xl space-y-12 sm:mt-16 sm:space-y-14">
+        <div className="mx-auto mt-10 max-w-5xl space-y-8 sm:mt-12 sm:space-y-9">
           {SKILL_CATEGORIES.map((cat) => {
             const skills = getSkillsForCategory(cat);
             if (skills.length === 0) return null;
@@ -42,7 +45,7 @@ export default function TechSection() {
                   {t(`categories.${cat.id}.description`)}
                 </p>
                 <ul
-                  className="mt-5 flex flex-wrap gap-3 sm:gap-4"
+                  className="mt-4 flex flex-wrap gap-3 sm:gap-4"
                   aria-label={t(`categories.${cat.id}.title`)}
                 >
                   {skills.map((skill) => (
@@ -58,6 +61,7 @@ export default function TechSection() {
                           height={28}
                           className="h-7 w-7 object-contain sm:h-8 sm:w-8"
                           loading="lazy"
+                          aria-hidden
                         />
                       </span>
                       <span className="text-sm font-medium text-zinc-800 sm:text-base">

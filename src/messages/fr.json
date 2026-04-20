@@ -1,7 +1,7 @@
 {
     "home": {
       "title": "Portfolio",
-      "intro": "Bonjour, je suis développeur. Ce site sera bientôt complété."
+      "intro": "Hello, I'm a developer. This site will be completed soon."
     },
     "presentation": {
       "kicker": "DIGITAL PORTFOLIO",
@@ -25,9 +25,7 @@
       }
     },
     "projects": {
-        "kicker": "Sélection",
         "title": "Projets",
-        "intro": "Quelques réalisations représentatives : architecture, back-end, front et outillage. Les fiches détaillées arriveront dans une prochaine version.",
         "v2Hint": "Fiche projet détaillée — bientôt",
         "items": {
               "dynatrust": {
@@ -62,7 +60,6 @@
     },
     "training": {
         "title": "Formations",
-        "intro": "Parcours académique et certifications.",
         "items": {
           "master": {
             "dateRange": "2023 — 2025",
@@ -134,40 +131,36 @@
         }
     },
     "about": {
-        "kicker": "Au-delà du code",
         "title": "À propos de moi",
-        "intro": "Le développement occupe une grande place dans mon parcours, mais ce n’est pas tout ce qui me définit. Voici ce qui nourrit mon équilibre au quotidien : énergie, curiosité et envie de bouger.",
         "passions": {
             "music": {
                 "title": "Musique & festivals",
-                "body": "J’aime découvrir des artistes, aller aux concerts et profiter de l’électricité des festivals. Partager un moment live, entouré de monde, reste pour moi une des sensations les plus simples et les plus fortes."
+                "body": "Passionné par le rap, français comme américain, je m’intéresse autant à la scène actuelle qu’à ses influences passées. J’apprécie assister à des concerts et festivals pour découvrir de nouveaux artistes."
             },
             "running": {
                 "title": "Course à pied",
-                "body": "La course, c’est mon exutoire : sortir, caler le rythme sur la respiration, repousser un peu le curseur à chaque sortie. Un bon moyen de quitter l’écran et de garder la tête claire."
+                "body": "Pratiquant de sport depuis mon enfance (football, basket, tennis, tennis de table), je me consacre aujourd’hui au running, avec des objectifs personnels et une participation à des courses officielles (10 km de Lille en 52 min 27)."
             },
             "gaming": {
                 "title": "Jeux vidéo",
-                "body": "Entre récits solo et parties entre amis, le gaming est un terrain d’exploration, de stratégie et parfois de compétition saine — un autre univers où on progresse, on se plante, et on recommence."
+                "body": "Amateur de jeux vidéo, rétro comme actuels, je joue depuis mon enfance à différents types de jeux, en solo comme en multijoueur, et apprécie également les moments de partage lors de soirées entre amis."
             },
             "travel": {
                 "title": "Voyages",
-                "body": "Voyager, c’est élargir le cadre : nouveaux paysages, nouvelles habitudes, et souvent de meilleures conversations. J’aime tracer un itinéraire tout en gardant de la marge pour l’imprévu."
+                "body": "Bien que peu intéressé par les voyages durant ma jeunesse, je développe aujourd’hui un réel intérêt pour la découverte de nouvelles villes et de différents pays, en Europe comme à l’international, avec notamment un récent séjour au Canada."
             },
             "nba": {
                 "title": "NBA",
-                "body": "Je suis la NBA pour le spectacle, le niveau d’exigence et les histoires d’équipes qui se construisent sur la durée. Les soirs de match, c’est un bon rythme pour se poser et suivre une saison du premier au dernier quart-temps."
+                "body": "Malgré un faible talent pour le basket, je porte un intérêt marqué à la NBA, tant pour le spectacle des matchs — malgré les horaires — que pour la richesse de son histoire et de ses joueurs."
             },
             "cooking": {
                 "title": "Cuisine",
-                "body": "J’aime cuisiner, découvrir de nouvelles recettes et partager des plats avec des amis. Cuisiner est un moyen de se relaxer et de se sentir bien."
+                "body": "En lien avec ma pratique du sport, il est important pour moi d’avoir une bonne alimentation. J’ai également plaisir à prendre le temps de cuisiner et à découvrir différents types de cuisine."
             }
         }
     },
     "tech": {
-        "kicker": "Stack",
         "title": "Technologies",
-        "intro": "Outils et environnements que j’utilise au quotidien, regroupés par domaine.",
         "categories": {
           "frontend": {
             "title": "Front-end",

@@ -57,7 +57,7 @@ function PassionPairCard({
   const total = PAIR_ROWS.length;
   const grad = stackGradientClass(depth, total);
   const light = depth === total - 1 && total > 1;
-  /** Toutes les cartes sont cliquables ; la dernière rangée n’a pas de rangée sous elle donc pas d’animation de marge en dessous. */
+
   const expandable = true;
   const expanded = expandedId === passion.id;
 
@@ -147,7 +147,6 @@ export default function AboutSection() {
   const t = useTranslations("about");
   const [expandedId, setExpandedId] = useState<PassionId | null>(null);
 
-  /** Rangée ouverte : seule la rangée suivante (expandedRowIndex + 1) remplace le -mt par une marge positive. */
   const expandedRowIndex = useMemo(() => {
     if (!expandedId) return -1;
     return PAIR_ROWS.findIndex(
@@ -162,7 +161,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-24 overflow-visible border-t border-zinc-200/80 py-20 sm:py-28"
+      className="relative scroll-mt-32 overflow-visible border-t border-zinc-200/80 py-14 sm:py-20"
       aria-labelledby="about-heading"
     >
       <div
@@ -184,19 +183,15 @@ export default function AboutSection() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         <header className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#0F6B78]/90">
-            {t("kicker")}
-          </p>
           <h2
             id="about-heading"
-            className="mt-4 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
+            className="mt-1 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
           >
             {t("title")}
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-zinc-600 sm:text-lg">{t("intro")}</p>
         </header>
 
-        <div className="relative mx-auto mt-20 max-w-6xl sm:mt-24 lg:mt-28 lg:max-w-7xl">
+        <div className="relative mx-auto mt-12 max-w-6xl sm:mt-14 lg:mt-16 lg:max-w-7xl">
           <ul className="relative list-none">
             {PAIR_ROWS.map((row, rowIndex) => {
               const isLastRow = rowIndex === PAIR_ROWS.length - 1;

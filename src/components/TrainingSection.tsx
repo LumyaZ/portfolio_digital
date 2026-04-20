@@ -95,7 +95,6 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
     const direct = skillIconByKey.get(normalized);
     if (direct) return direct;
 
-    // Tags combinés (ex: "HTML/CSS", "PHP (POO)")
     if (normalized.includes("html")) {
       return (
         skillIconByKey.get(normalizeTag("html")) ??
@@ -110,7 +109,6 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
     return undefined;
   }
 
-  // Slide horizontal + plus long
   const hiddenTranslate = alignLeft ? "-translate-x-10" : "translate-x-10";
 
   return (
@@ -138,7 +136,6 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
         <div
           className={[
             "relative flex shrink-0 flex-col justify-between gap-4 border-b border-[#0F6B78]/35 px-4 py-6 sm:px-6 sm:py-8 md:w-[min(28%,12.5rem)] md:border-b-0 md:pb-8 md:pt-8",
-            // Trait vertical interne (80% hauteur)
             "md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[80%] md:after:w-[2px] md:after:bg-[#0F6B78]/35",
             metaOnRight ? "md:after:left-0 md:pl-10 md:pr-6" : "md:after:right-0 md:pl-6 md:pr-10",
           ].join(" ")}
@@ -212,7 +209,7 @@ export default function TrainingSection() {
   return (
     <section
       id="training"
-      className="relative scroll-mt-24 overflow-hidden border-t border-zinc-200/90 py-16 sm:py-24"
+      className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/90 py-16 sm:py-24"
       aria-labelledby="training-heading"
     >
       <div
@@ -225,6 +222,27 @@ export default function TrainingSection() {
       />
       <div
         className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
+        aria-hidden
+      />
+      {/* Taches supplémentaires (teal / cyan), toute la section */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
         aria-hidden
       />
       <div

@@ -25,9 +25,7 @@
       }
     },
     "projects": {
-        "kicker": "Selection",
         "title": "Projects",
-        "intro": "A few representative builds: architecture, back-end, front-end, and tooling. Detailed case studies will come in a later version.",
         "v2Hint": "Full project page — coming soon",
         "items": {
             "dynatrust": {
@@ -62,7 +60,6 @@
     },
     "training": {
         "title": "Training",
-        "intro": "Academic path and certifications.",
         "items": {
           "master": {
             "dateRange": "2023 — 2025",
@@ -134,40 +131,36 @@
         }
     },
     "about": {
-        "kicker": "Beyond code",
         "title": "About me",
-        "intro": "Development is a big part of my path, but it’s not the whole story. Here’s what keeps me balanced day to day: energy, curiosity, and the need to keep moving.",
         "passions": {
             "music": {
                 "title": "Music & festivals",
-                "body": "I love discovering artists, going to gigs, and soaking up festival crowds. Sharing a live moment with people around you is still one of the simplest, strongest feelings I know."
+                "body": "Passionate about rap, French and American, I’m interested in both current and past music scenes. I enjoy attending concerts and festivals to discover new artists."
             },
-            "running": {
+            "running": {  
                 "title": "Running",
-                "body": "Running is my reset: get outside, sync pace with breathing, push the bar a little each time. A solid way to step away from the screen and clear my head."
+                "body": "I’ve been practicing sports since childhood (football, basketball, tennis, table tennis), I now dedicate myself to running, with personal goals and participation in official races (10 km in Lille in 52 min 27)."
             },
             "gaming": {
                 "title": "Gaming",
-                "body": "From story-driven solo games to sessions with friends, gaming is space for exploration, strategy, and sometimes friendly competition — another world where you improve, fail, and try again."
+                "body": "Amateur of video games, retro as well as current, I’ve been playing different types of games since childhood, solo and multiplayer, and also appreciate sharing moments with friends during evenings."
             },
             "travel": {
                 "title": "Travel",
-                "body": "Travel widens the frame: new landscapes, new habits, and often better conversations. I like sketching an itinerary while leaving room for the unexpected."
+                "body": "Although not particularly interested in travel during my youth, I’ve developed a real interest in discovering new cities and different countries, in Europe as well as internationally, including a recent stay in Canada."
             },
             "nba": {
                 "title": "NBA",
-                "body": "I follow the NBA for the show, the standard of play, and team arcs that unfold over a season. Game nights are a steady rhythm to unwind and follow the story from tip-off to the final buzzer."
+                "body": "Despite a low talent for basketball, I have a marked interest in the NBA, both for the spectacle of the matches — despite the hours — and for the richness of its history and its players."
             },
             "cooking": {
                 "title": "Cooking",
-                "body": "I love cooking, discovering new recipes, and sharing meals with friends. Cooking is a way to relax and feel good."
+                "body": "In line with my practice of sport, it is important for me to have a good diet. I also enjoy taking the time to cook and discover different types of cuisine."
             }
         }
     },
     "tech": {
-        "kicker": "Stack",
         "title": "Technologies",
-        "intro": "Tools and environments I work with, grouped by area.",
         "categories": {
           "frontend": {
             "title": "Front-end",

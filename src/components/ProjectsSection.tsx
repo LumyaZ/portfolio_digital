@@ -7,7 +7,7 @@ export default async function ProjectsSection() {
   const t = await getTranslations("projects");
 
   return (
-    <section id="projects" className="relative scroll-mt-24 overflow-hidden py-0">
+    <section id="projects" className="relative scroll-mt-32 overflow-hidden py-0">
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden

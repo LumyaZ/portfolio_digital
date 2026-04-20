@@ -61,20 +61,49 @@ export default function StorySection() {
   return (
     <section
       id="story"
-      className="relative scroll-mt-24 border-t border-zinc-200/80 py-20 sm:py-28"
+      className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/80 py-20 sm:py-28"
       aria-labelledby="story-heading"
     >
+      {/* Même fond que Formations : dégradé + taches + damier */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_55%,#f4fafb_100%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(#0F6B78_0.8px,transparent_0.8px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] [background-size:18px_18px]"
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl px-6">
-      <header className="mx-auto max-w-3xl text-center">
+        <header className="mx-auto max-w-3xl text-center">
           <h2
             id="story-heading"
             className="text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
