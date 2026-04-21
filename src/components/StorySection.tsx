@@ -181,7 +181,7 @@ export default function StorySection() {
                       <h3 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
                         {t(`detail.${id}.title`)}
                       </h3>
-                      <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/95 sm:text-lg">
+                      <p className="mt-4 rounded-xl border border-zinc-200/80 bg-white p-4 text-zinc-800 whitespace-pre-line text-base leading-relaxed shadow-sm sm:p-6 sm:text-lg">
                         {t(`detail.${id}.body`)}
                       </p>
                     </>

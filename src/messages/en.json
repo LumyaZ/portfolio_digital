@@ -101,32 +101,29 @@
         "timeline": {
             "bts": {
                 "period": "2020 — 2022",
-                "label": "BTS SIO SLAM",
-                "short": "Fundamentals of web development and networks."
+                "label": "BTS SIO SLAM"
             },
             "ynov": {
                 "period": "2022 — 2025",
-                "label": "Ynov Campus",
-                "short": "Bachelor then Master Full Stack in Lille."
+                "label": "Ynov Campus"
             },
             "alternance": {
-                "period": "2023 — 2025",
-                "label": "Work-study",
-                "short": "On-the-job experience at the heart of my path."
+                "period": "2022 — 2025",
+                "label": "Work-study"
             }
         },
         "detail": {
-            "bts": {
-                "title": "BTS SIO — SLAM track",
-                "body": "Text here: what you learned, what you liked, what you retain from this period."
+            "bts": {  
+                "title": "BTS SIO — option SLAM", 
+                "body": "When I obtained my Bac S, I decided to pursue my post-baccalaureate studies in the field of computer science.\n\nThis choice was imposed on me after my discovery of this field during my years of high school, particularly through the learning of the Python and HTML/CSS languages. I therefore chose to join the BTS SIO, option SLAM (IT Services for Organizations – Software Solutions and Application Services).\n\nDuring this two-year training, I had the opportunity to discover the basics of web development and networks, particularly through the training given and the projects realized. Furthermore, I had the opportunity to carry out two internships (2 x 6 weeks) in the INFORMANET company, a company specializing in computer repair and maintenance. The objective of these internships was to familiarize me with the world of work and professional life while contributing to the realization of a concrete project. In the framework of these internships, my objective was to develop a web application allowing to record a repair or maintenance quote for a client. He wanted to go from a paper database to a digital database. I therefore developed this application using PHP and MySQL.\n\nIn parallel with these internships, I also participated in several academic projects during my two years of training. These projects allowed me to discover and practice different programming languages: Python, JavaScript, Java, C#, PHP and SQL.\n\nThey also allowed me to understand teamwork in a development context, as well as to familiarize myself with different project management methodologies, such as the cascade and agile approaches."
             },
             "ynov": {
                 "title": "Ynov Campus",
-                "body": "Text here: curriculum, notable projects, consolidated skills."
+                "body": "After obtaining my BTS, I chose to pursue my studies in a more professional direction by integrating a work-study curriculum. This is in this framework that I joined the Lille Ynov Campus to follow a Bachelor in computer science.\n\nDuring this year of Bachelor, in parallel with my work-study, the teaching is mainly based on the realization of projects, whether in team or autonomously, through different learning modules. This training allowed me to discover and practice several technologies and frameworks such as React, Angular and Node.js.\n\nFrom my entry into Bachelor, I already had the objective of pursuing until the Master Developer Informatique at Lille Ynov Campus, still in work-study.\n\nIt is mainly during this Master that I was able to consolidate my technical and professional skills, particularly through more concrete projects such as my final project \"Musculia\" as well as my project Ydays \"YtechUnion\". These experiences allowed me to consolidate my achievements and develop advanced skills in web development.\n\nThe whole of this path led me to the acquisition of my RNCP level Master – Expert in web development diploma."
             },
             "alternance": {
                 "title": "Work-study",
-                "body": "Longer text here: company, missions, learning, what matters most to you."
+                "body": "Parallel to my years at Lille Ynov Campus, I occupied a position of Full-stack Developer at the DYNATRUST start-up. My main mission consisted in contributing to the development of the GRC SaaS solution of DYNATRUST, aiming to ensure a management compliant with international standards and norms in cybersecurity.\n\nI was recruited in December 2022 by the two founders, the CEO Matthieu Paganon and the CTO Thibault Denoyelle, as the first recruitment of this young start-up. During these three years, the development team has evolved several times with the arrival of other work-study students, trainees as well as an Engineering Manager.\n\nThroughout my work-study, I was able to develop my skills in many areas offered by DYNATRUST. On the technical level, I worked on different languages and technologies such as Java Spring Boot, Angular and Python. I also participated in the implementation of software tests and the use of versioning tools such as Git.\n\nOn the methodological level, I applied the Agile practices, particularly Scrum and Kanban, in the framework of the projects of the team. In parallel, I also strengthened my knowledge in cybersecurity, particularly on subjects such as governance, risk management, compliance as well as the ISO 27001 standard.\n\nThis experience allowed me to realize many human and professional encounters, while being trained in an exacting environment. It helped me to become a more rigorous, autonomous and professional developer."
             }
         }
     },

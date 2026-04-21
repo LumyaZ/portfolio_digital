@@ -101,32 +101,29 @@
         "timeline": {
             "bts": {
                 "period": "2020 — 2022",
-                "label": "BTS SIO SLAM",
-                "short": "Bases du développement et des réseaux."
+                "label": "BTS SIO SLAM"
             },
             "ynov": {
                 "period": "2022 — 2025",
-                "label": "Ynov Campus",
-                "short": "Bachelor puis Master Full Stack à Lille."
+                "label": "Ynov Campus"
             },
             "alternance": {
-                "period": "2023 — 2025",
-                "label": "Alternance",
-                "short": "Expérience en entreprise, au cœur de mon parcours."
+                "period": "2022 — 2025",
+                "label": "Alternance"
             }
         },
         "detail": {
             "bts": {
                 "title": "BTS SIO — option SLAM",
-                "body": "Texte ici : ce que tu as appris, ce qui t’a plu, ce que tu retiens de cette période."
+                "body": "Lors de l'obtention de mon BAC S, j’ai décidé de poursuivre mes études post-bac dans le domaine du développement informatique.\n\nCe choix s’est imposé suite à ma découverte de ce domaine durant mes années de lycée, notamment à travers l’apprentissage des langages Python et HTML/CSS. J’ai donc choisi d’intégrer la formation BTS SIO, option SLAM (Services Informatiques aux Organisations – Solutions Logicielles et Applications Métiers).\n\nAu cours de cette formation de deux ans, j’ai acquis les bases du développement web ainsi que des notions en réseaux, grâce aux enseignements suivis et aux stages réalisés.\n\nDans le cadre de mon BTS, j’ai effectué deux stages de 6 semaines au sein de l’entreprise INFORMANET, spécialisée dans la réparation et la maintenance informatique. Ces expériences m’ont permis de découvrir le monde professionnel tout en participant à un projet concret.\n\nJ’ai notamment développé une application web permettant d’enregistrer des devis de réparation ou de maintenance pour les clients, afin de remplacer une gestion papier par une base de données numérique. Cette application a été réalisée en PHP et MySQL.\n\nEn parallèle, j’ai participé à plusieurs projets académiques durant ces deux années, me permettant de pratiquer différents langages : Python, JavaScript, Java, C#, PHP et SQL.\n\nCes expériences m’ont également permis de développer le travail en équipe et de me familiariser avec les méthodologies de gestion de projet, notamment les approches en cascade et agile."
             },
             "ynov": {
                 "title": "Ynov Campus",
-                "body": "Texte ici : cursus, projets marquants, compétences consolidées."
-            },
+                "body": "Suite à l’obtention de mon BTS, j’ai choisi de poursuivre mes études dans une voie plus professionnalisante en intégrant un cursus en alternance. C’est dans ce cadre que j’ai rejoint le campus Lille Ynov Campus pour y suivre un Bachelor en informatique.\n\nDurant cette année de Bachelor, en parallèle de mon alternance, les enseignements sont principalement basés sur la réalisation de projets, que ce soit en équipe ou en autonomie, à travers différents modules d’apprentissage. Cette formation m’a permis de découvrir et de pratiquer plusieurs technologies et frameworks tels que React, Angular et Node.js.\n\nDès mon entrée en Bachelor, j’avais déjà pour objectif de poursuivre jusqu’au Master Développeur Informatique au sein de Lille Ynov Campus, toujours en alternance.\n\nC’est principalement durant ce Master que j’ai pu approfondir mes compétences techniques et professionnelles, notamment à travers des projets plus concrets comme mon projet de fin d’études « Musculia » ainsi que mon projet Ydays « YtechUnion ». Ces expériences m’ont permis de consolider mes acquis et de développer des compétences avancées en développement web.\n\nL’ensemble de ce parcours m’a conduit à l’obtention de mon diplôme RNCP de niveau Master – Expert en développement web."
+              },
             "alternance": {
                 "title": "L’alternance",
-                "body": "Texte plus long ici : entreprise, missions, apprentissages, en quoi c’est central pour toi."
+                "body": "En parallèle de mes années à Lille Ynov Campus, j’ai occupé un poste d’alternant Développeur Full-stack au sein de la start-up DYNATRUST. Ma mission principale consistait à contribuer au développement du logiciel SaaS de GRC DYNATRUST, visant à assurer une gestion conforme aux standards et normes internationales en cybersécurité.\n\nJ’ai été recruté fin 2022 par les deux fondateurs, le CEO Matthieu Paganon et le CTO Thibault Denoyelle, en tant que premier recrutement de cette jeune start-up. Au cours de ces trois années, l’équipe de développement a évolué à plusieurs reprises avec l’arrivée d’autres alternants, stagiaires ainsi que d’un Engineering Manager.\n\nTout au long de mon alternance, j’ai pu développer mes compétences dans de nombreux domaines proposés par DYNATRUST. Sur le plan technique, j’ai travaillé sur différents langages et technologies tels que Java Spring Boot, Angular et Python. J’ai également participé à la mise en place de tests logiciels et à l’utilisation d’outils de versioning comme Git.\n\nSur le plan méthodologique, j’ai appliqué les pratiques Agile, notamment Scrum et Kanban, dans le cadre des projets de l’équipe. En parallèle, j’ai également renforcé mes connaissances en cybersécurité, notamment sur des sujets tels que la gouvernance, la gestion des risques, la conformité ainsi que la norme ISO 27001.\n\nCette expérience m’a permis de réaliser de nombreuses rencontres humaines et professionnelles, tout en me formant à un environnement exigeant. Elle m’a aidé à devenir un développeur plus rigoureux, autonome et professionnel."
             }
         }
     },
