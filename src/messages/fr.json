@@ -25,38 +25,44 @@
       }
     },
     "projects": {
-        "title": "Projets",
-        "v2Hint": "Fiche projet détaillée — bientôt",
-        "items": {
-              "dynatrust": {
-                "badge": "Développeur | Alternance",
-                "title": "Dynatrust",
-                "hoverTitle": "Logiciel Dynatrust",
-                "description": "Logiciel GRC développé pendant mon alternance chez DYNATRUST, l'objectif était de développer la solution SaaS visant à instaurer une gestion conforme aux standards et normes internationales en cybersécurité.",
-                "tags": "Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Python, GitLab CI/CD"
-            },
-            "musculia": {
-                "badge": "Développeur Full-Stack",
-                "title": "Musculia",
-                "hoverTitle": "Application Musculia",
-                "description": "Application Web de musculation personnalisée permettant de générer des programmes de musculation grâce à l'IA, adaptés à chaque utilisateur.",
-                "tags": "Java, Spring Boot, MySQL, Python, AI, Docker"
-            },
-            "ytechUnion": {
-                "badge": "Chef de Projet | DevOps Web",
-                "title": "YtechUnion",
-                "hoverTitle": "Agence Web YtechUnion",
-                "description": "Agence Web créatrice de sites vitrine pour des projets étudiants et professionnels. Élaboration des sites de la maquette jusqu'à l'hébergement.",
-                "tags": "React, Next.js, Tailwind CSS, TypeScript, Figma"
-            },
-            "craft2give": {
-                "badge": "Développeur Front-End | participant & donateur",
-                "title": "Craft2Give",
-                "hoverTitle": "Projet associatif : Craft2Give",
-                "description": "Chaîne d’ingestion, transformation et chargement vers un entrepôt avec jobs planifiés et monitoring.",
-                "tags": "React, Twitch"
-            }
-        }
+      "title": "Projets",
+      "v2Hint": "Cliquez pour ouvrir la fiche détaillée",
+      "openDetail": "Ouvrir la fiche projet",
+      "backToList": "Retour aux projets",
+      "items": {
+          "dynatrust": {
+              "badge": "Développeur | Alternance",
+              "title": "Dynatrust",
+              "hoverTitle": "Logiciel Dynatrust",
+              "description": "Logiciel GRC développé pendant mon alternance chez DYNATRUST, l'objectif était de développer la solution SaaS visant à instaurer une gestion conforme aux standards et normes internationales en cybersécurité.",
+              "tags": "Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Python, GitLab CI/CD",
+              "detailBody": "Rédige ici le détail Dynatrust : contexte, périmètre, livrables, stack, apprentissages.\n\nTu peux utiliser plusieurs paragraphes avec des sauts de ligne doubles dans cette chaîne JSON."
+          },
+          "musculia": {
+              "badge": "Développeur Full-Stack",
+              "title": "Musculia",
+              "hoverTitle": "Application Musculia",
+              "description": "Application Web de musculation personnalisée permettant de générer des programmes de musculation grâce à l'IA, adaptés à chaque utilisateur.",
+              "tags": "Java, Spring Boot, MySQL, Python, AI, Docker",
+              "detailBody": "Détail Musculia : problème, solution, architecture, IA, résultats."
+          },
+          "ytechUnion": {
+              "badge": "Chef de Projet | DevOps Web",
+              "title": "YtechUnion",
+              "hoverTitle": "Agence Web YtechUnion",
+              "description": "Agence Web créatrice de sites vitrine pour des projets étudiants et professionnels. Élaboration des sites de la maquette jusqu'à l'hébergement.",
+              "tags": "React, Next.js, Tailwind CSS, TypeScript, Figma",
+              "detailBody": "Détail YtechUnion : organisation, livrables, stack front, hébergement."
+          },
+          "craft2give": {
+              "badge": "Développeur Front-End | participant & donateur",
+              "title": "Craft2Give",
+              "hoverTitle": "Projet associatif : Craft2Give",
+              "description": "Chaîne d’ingestion, transformation et chargement vers un entrepôt avec jobs planifiés et monitoring.",
+              "tags": "React, Twitch",
+              "detailBody": "Détail Craft2Give : contexte associatif, rôle, fonctionnalités, stack."
+          }
+      }
     },
     "training": {
         "title": "Formations",
