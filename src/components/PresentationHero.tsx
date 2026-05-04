@@ -79,14 +79,14 @@ export default function PresentationHero() {
                   const delay = 1.15 + rowMobile * 0.12;
 
                   return (
-                    <li key={skill.id} className="hero-skill-item" style={{animationDelay: `${delay}s`}}>
-                      <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center transition hover:border-[#0F6B78]/40 hover:shadow-sm">
+                    <li key={skill.id} className="hero-skill-item group" style={{animationDelay: `${delay}s`}}>
+                      <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center shadow-sm transition duration-300 ease-out will-change-transform hover:z-10 hover:scale-[1.045] hover:border-[#0F6B78]/45 hover:shadow-lg hover:shadow-zinc-400/40">
                         <img
                           src={skill.iconSrc}
                           alt=""
                           width={64}
                           height={64}
-                          className="h-16 w-16 object-contain"
+                          className="h-16 w-16 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                           loading="lazy"
                           aria-hidden
                         />
