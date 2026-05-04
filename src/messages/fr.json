@@ -26,9 +26,11 @@
     },
     "projects": {
       "title": "Projets",
-      "v2Hint": "Cliquez pour ouvrir la fiche détaillée",
       "openDetail": "Ouvrir la fiche projet",
       "backToList": "Retour aux projets",
+      "modalClose": "Fermer",
+      "v2Hint": "Cliquez pour ouvrir le détail dans une fenêtre",
+      "visitSite": "Voir le site",
       "items": {
           "dynatrust": {
               "badge": "Développeur | Alternance",

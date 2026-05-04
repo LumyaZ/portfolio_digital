@@ -26,9 +26,11 @@
     },
     "projects": {
       "title": "Projects",
-      "v2Hint": "Click to open the full project page",
       "openDetail": "Open project details",
       "backToList": "Back to projects",
+      "modalClose": "Close",
+      "v2Hint": "Click to open details in a window",
+      "visitSite": "Visit website",
       "items": {
           "dynatrust": {
               "badge": "Developer | Intern",
