@@ -1,9 +1,7 @@
-/** Identifiants stables pour i18n + futures routes /projets/[slug] */
 export const PROJECT_IDS = ["dynatrust", "musculia", "ytechUnion", "craft2give"] as const;
 
 export type ProjectId = (typeof PROJECT_IDS)[number];
 
-/** Visuel des cartes sur la page d’accueil (liste projets). */
 export const PROJECT_COVER: Record<ProjectId, string | null> = {
   dynatrust: "/projets/dynatrust-logo.png",
   musculia: "/projets/musculia-home.png",
@@ -11,7 +9,6 @@ export const PROJECT_COVER: Record<ProjectId, string | null> = {
   craft2give: "/projets/craft2give-home.png",
 };
 
-/** Visuel dédié à la modale (ex. bannière). null → on réutilise PROJECT_COVER. */
 export const PROJECT_COVER_POPUP: Record<ProjectId, string | null> = {
   dynatrust: "/projets/dynatrust-logo.png",
   musculia: "/projets/musculia-header3.png",

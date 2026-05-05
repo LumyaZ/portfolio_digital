@@ -112,7 +112,6 @@ export type SkillCategory = {
   skillIds: string[];
 };
 
-/** Répartition des `Skill.id` par catégorie (ordre d’affichage = ordre du tableau). */
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "frontend",

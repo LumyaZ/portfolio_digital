@@ -1,6 +1,6 @@
 "use client";
 
-import {useCallback, useEffect, useId, useState} from "react";
+import {useCallback, useEffect, useId, useRef, useState} from "react";
 import {useTranslations} from "next-intl";
 
 const STORY_TAB_IDS = ["bts", "ynov", "alternance"] as const;
@@ -9,14 +9,19 @@ type StoryTabId = (typeof STORY_TAB_IDS)[number];
 const TEAL = "#0F6B78";
 const AUTO_ADVANCE_MS = 20_000;
 
-/** Aligné sur Tailwind `sm` (640px) : en dessous, les onglets sont souvent tronqués. */
 const COMPACT_TAB_MQ = "(max-width: 639px)";
 
 export default function StorySection() {
   const t = useTranslations("story");
   const baseId = useId();
+  const tabRefs = useRef<Partial<Record<StoryTabId, HTMLButtonElement>>>({});
+
   const [active, setActive] = useState<StoryTabId>("bts");
   const [compactTabTooltips, setCompactTabTooltips] = useState(false);
+  const [pointerInside, setPointerInside] = useState(false);
+  const [focusInside, setFocusInside] = useState(false);
+
+  const pauseAutoAdvance = pointerInside || focusInside;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -30,6 +35,7 @@ export default function StorySection() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (pauseAutoAdvance) return;
 
     const id = window.setInterval(() => {
       setActive((prev) => {
@@ -39,24 +45,46 @@ export default function StorySection() {
     }, AUTO_ADVANCE_MS);
 
     return () => window.clearInterval(id);
+  }, [pauseAutoAdvance]);
+
+  const selectTab = useCallback((id: StoryTabId, moveFocusToTab: boolean) => {
+    setActive(id);
+    if (moveFocusToTab) {
+      queueMicrotask(() => tabRefs.current[id]?.focus());
+    }
   }, []);
 
-  const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-    const i = STORY_TAB_IDS.indexOf(active);
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-      e.preventDefault();
-      setActive(STORY_TAB_IDS[(i + 1) % STORY_TAB_IDS.length]);
-    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-      e.preventDefault();
-      setActive(STORY_TAB_IDS[(i - 1 + STORY_TAB_IDS.length) % STORY_TAB_IDS.length]);
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      setActive(STORY_TAB_IDS[0]);
-    } else if (e.key === "End") {
-      e.preventDefault();
-      setActive(STORY_TAB_IDS[STORY_TAB_IDS.length - 1]);
-    }
-  }, [active]);
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      const i = STORY_TAB_IDS.indexOf(active);
+      let next: StoryTabId | undefined;
+
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        next = STORY_TAB_IDS[(i + 1) % STORY_TAB_IDS.length];
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        next = STORY_TAB_IDS[(i - 1 + STORY_TAB_IDS.length) % STORY_TAB_IDS.length];
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        next = STORY_TAB_IDS[0];
+      } else if (e.key === "End") {
+        e.preventDefault();
+        next = STORY_TAB_IDS[STORY_TAB_IDS.length - 1];
+      }
+
+      if (next !== undefined) {
+        selectTab(next, true);
+      }
+    },
+    [active, selectTab]
+  );
+
+  const onStoryRegionBlurCapture = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    const related = e.relatedTarget as Node | null;
+    if (related && e.currentTarget.contains(related)) return;
+    setFocusInside(false);
+  }, []);
 
   return (
     <section
@@ -64,7 +92,6 @@ export default function StorySection() {
       className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/80 py-20 sm:py-28"
       aria-labelledby="story-heading"
     >
-      {/* Même fond que Formations : dégradé + taches + damier */}
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_55%,#f4fafb_100%)]"
         aria-hidden
@@ -98,7 +125,7 @@ export default function StorySection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.22] bg-[linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] bg-size-[18px_18px]"
         aria-hidden
       />
 
@@ -112,10 +139,16 @@ export default function StorySection() {
           </h2>
         </header>
 
-        <div className="mt-14">
+        <div
+          className="mt-14"
+          onPointerEnter={() => setPointerInside(true)}
+          onPointerLeave={() => setPointerInside(false)}
+          onFocusCapture={() => setFocusInside(true)}
+          onBlurCapture={onStoryRegionBlurCapture}
+        >
           <div
             role="tablist"
-            aria-label={t("title")}
+            aria-label={t("tablistAria")}
             className="flex flex-wrap items-end gap-0"
             onKeyDown={onKeyDown}
           >
@@ -128,6 +161,10 @@ export default function StorySection() {
               return (
                 <button
                   key={id}
+                  ref={(node) => {
+                    if (node) tabRefs.current[id] = node;
+                    else delete tabRefs.current[id];
+                  }}
                   type="button"
                   role="tab"
                   id={tabId}
@@ -135,13 +172,13 @@ export default function StorySection() {
                   aria-controls={panelId}
                   tabIndex={isActive ? 0 : -1}
                   title={compactTabTooltips ? label : undefined}
-                  onClick={() => setActive(id)}
+                  onClick={() => selectTab(id, false)}
                   className={[
                     "relative min-w-0 text-center text-sm font-medium transition-[min-height,padding,color,background-color] duration-200 ease-out sm:text-base",
-                    "rounded-t-lg border border-b-0 border-zinc-200/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]",
+                    "rounded-t-lg border border-b-0 border-zinc-200/90 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]",
                     isActive
-                      ? "z-10 flex-[1.85] px-6 min-h-[3.25rem] bg-[#0F6B78] pt-5 pb-3 text-white shadow-sm sm:min-h-[3.75rem] sm:px-10 sm:pt-6 sm:pb-3.5"
-                      : "flex-1 px-3 min-h-[2.25rem] bg-white py-2.5 text-zinc-900 hover:bg-zinc-50 sm:min-h-[2.5rem] sm:px-4 sm:py-3",
+                      ? "z-10 flex-[1.85] px-6 min-h-13 bg-[#0F6B78] pt-5 pb-3 text-white shadow-sm sm:min-h-15 sm:px-10 sm:pt-6 sm:pb-3.5"
+                      : "flex-1 px-3 min-h-9 bg-white py-2.5 text-zinc-900 hover:bg-zinc-50 sm:min-h-10 sm:px-4 sm:py-3",
                   ].join(" ")}
                   style={isActive ? {backgroundColor: TEAL} : undefined}
                 >
@@ -149,7 +186,7 @@ export default function StorySection() {
                   {isActive && (
                     <span
                       aria-hidden
-                      className="pointer-events-none absolute left-1/2 top-full z-20 -translate-x-1/2 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-white"
+                      className="pointer-events-none absolute left-1/2 top-full z-20 -translate-x-1/2 border-l-[6px] border-r-[6px] border-t-8 border-l-transparent border-r-transparent border-t-white"
                     />
                   )}
                 </button>

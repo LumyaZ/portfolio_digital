@@ -96,7 +96,6 @@ body {
   }
 }
 
-/* À propos : piles + apparition liée par rang (--pair-row) */
 @keyframes about-stack-in {
   from {
     opacity: 0;

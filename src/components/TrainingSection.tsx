@@ -1,10 +1,15 @@
 "use client";
 
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useId, useMemo, useRef, useState} from "react";
 import {useTranslations} from "next-intl";
 import type {TrainingId} from "@/data/training";
 import {TRAINING_IDS} from "@/data/training";
 import {SKILLS} from "@/data/skill";
+
+const TRAINING_CARD_IO: IntersectionObserverInit = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -10% 0px",
+};
 
 function splitList(raw: string, delimiter: string) {
   return raw
@@ -27,6 +32,10 @@ function useInViewDisappear<T extends Element>(options?: IntersectionObserverIni
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
 
+  const threshold = options?.threshold;
+  const rootMargin = options?.rootMargin;
+  const root = options?.root;
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -42,11 +51,11 @@ function useInViewDisappear<T extends Element>(options?: IntersectionObserverIni
 
     const obs = new IntersectionObserver(([entry]) => {
       setInView(entry.isIntersecting);
-    }, options);
+    }, {threshold, rootMargin, root});
 
     obs.observe(el);
     return () => obs.disconnect();
-  }, [options]);
+  }, [threshold, rootMargin, root]);
 
   return {ref, inView};
 }
@@ -78,16 +87,14 @@ type TrainingCardProps = {
 };
 
 function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
+  const cardTitleId = useId();
   const alignLeft = index % 2 === 0;
   const metaOnRight = index === 1;
 
   const tags = splitList(t(`items.${id}.tags`), ",");
   const bullets = splitList(t(`items.${id}.bullets`), "|");
 
-  const {ref, inView} = useInViewDisappear<HTMLLIElement>({
-    threshold: 0.2,
-    rootMargin: "0px 0px -10% 0px",
-  });
+  const {ref, inView} = useInViewDisappear<HTMLLIElement>(TRAINING_CARD_IO);
 
   function iconForTag(tag: string): string | undefined {
     const normalized = normalizeTag(tag);
@@ -119,18 +126,19 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
         alignLeft
           ? "self-start pl-0 pr-4 sm:pr-6 md:pr-10"
           : "self-end pr-0 pl-4 sm:pl-6 md:pl-10",
-        "transition-[transform,opacity] duration-[2200ms] ease-out will-change-transform",
-        inView ? "translate-x-0 opacity-100" : `${hiddenTranslate} opacity-0`,
+        "transition-[transform,opacity] duration-2200 ease-out will-change-transform motion-reduce:transition-none",
+        inView ? "translate-x-0 opacity-100" : `${hiddenTranslate} opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100`,
       ].join(" ")}
     >
       <article
+        aria-labelledby={cardTitleId}
         className={[
-          "flex min-h-[min(320px,46svh)] flex-col border border-[#0F6B78]/20 bg-gradient-to-b from-white to-[#f4fafb] shadow-sm transition-shadow duration-300 md:min-h-[min(320px,42svh)] md:flex-row md:items-stretch",
+          "flex min-h-[min(320px,46svh)] flex-col border border-[#0F6B78]/20 bg-linear-to-b from-white to-[#f4fafb] shadow-sm transition-shadow duration-300 md:min-h-[min(320px,42svh)] md:flex-row md:items-stretch",
           "hover:border-[#0F6B78]/35 hover:shadow-lg hover:shadow-[#0F6B78]/10",
           metaOnRight ? "md:flex-row-reverse" : "",
           alignLeft
-            ? "rounded-l-none rounded-r-[1.75rem] border-l-0 sm:rounded-r-[2rem]"
-            : "rounded-r-none rounded-l-[1.75rem] border-r-0 sm:rounded-l-[2rem]",
+            ? "rounded-l-none rounded-r-[1.75rem] border-l-0 sm:rounded-r-4xl"
+            : "rounded-r-none rounded-l-[1.75rem] border-r-0 sm:rounded-l-4xl",
         ].join(" ")}
       >
         <div
@@ -159,18 +167,21 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
             metaOnRight ? "md:pl-8 md:pr-6" : "md:pr-8",
           ].join(" ")}
         >
-          <h3 className="text-lg leading-snug text-zinc-900 sm:text-xl md:text-2xl">
+          <h3
+            id={cardTitleId}
+            className="text-lg leading-snug text-zinc-900 sm:text-xl md:text-2xl"
+          >
             <span className="font-bold">{t(`items.${id}.degree`)}</span>
             <span className="font-normal"> - {t(`items.${id}.program`)}</span>
           </h3>
 
           <ul className="flex list-none flex-wrap gap-2.5">
-            {tags.map((tag) => {
+            {tags.map((tag, tagIndex) => {
               const iconSrc = iconForTag(tag);
 
               return (
                 <li
-                  key={tag}
+                  key={`${id}-tag-${tagIndex}-${tag}`}
                   className="flex items-center gap-2 rounded-lg border border-zinc-200/90 bg-zinc-100 px-3.5 py-1.5 text-sm font-medium text-zinc-800 transition-colors duration-200 hover:border-[#0F6B78]/35 hover:bg-[#0F6B78]/10 hover:text-[#0F6B78] sm:text-base"
                 >
                   {iconSrc && (
@@ -191,8 +202,8 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
           </ul>
 
           <ul className="list-disc space-y-2.5 pl-5 text-base leading-relaxed text-zinc-800 marker:text-zinc-400 sm:text-lg">
-            {bullets.map((line) => (
-              <li key={line}>{line}</li>
+            {bullets.map((line, bulletIdx) => (
+              <li key={`${id}-bullet-${bulletIdx}`}>{line}</li>
             ))}
           </ul>
         </div>
@@ -224,7 +235,6 @@ export default function TrainingSection() {
         className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
         aria-hidden
       />
-      {/* Taches supplémentaires (teal / cyan), toute la section */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
         aria-hidden
@@ -246,7 +256,7 @@ export default function TrainingSection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.22] [background-image:linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.22] bg-[linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] bg-size-[18px_18px]"
         aria-hidden
       />
 
@@ -254,7 +264,7 @@ export default function TrainingSection() {
         <header className="mx-auto max-w-3xl px-2 text-center sm:px-0">
           <h2
             id="training-heading"
-            className="text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
+            className="mt-1 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
           >
             {t("title")}
           </h2>

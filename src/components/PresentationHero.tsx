@@ -1,3 +1,5 @@
+"use client";
+
 import {useTranslations} from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import {SKILLS} from "@/data/skill";
@@ -14,19 +16,16 @@ export default function PresentationHero() {
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden
       />
-      {/* Tache bleue gauche (comme Formations) */}
       <div
         className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
         aria-hidden
       />
-      {/* Tache bleue droite (comme Formations) */}
       <div
         className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
         aria-hidden
       />
-      {/* Fond de points bleu */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(#0F6B78_0.8px,transparent_0.8px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden
       />
 
@@ -64,14 +63,14 @@ export default function PresentationHero() {
               <a
                 href="/THOMAS_CORNU_CV.pdf"
                 download="THOMAS_CORNU_CV.pdf"
-                className="inline-flex items-center justify-center rounded-md bg-[#0F6B78] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                className="inline-flex items-center justify-center rounded-md bg-[#0F6B78] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]"
               >
                 {t("downloadCv")}
               </a>
             </div>
           </div>
 
-          <div className="order-last min-w-0 md:order-last">
+          <div className="order-last min-w-0">
             <div className="flex flex-col gap-4">
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {heroSkills.map((skill, index) => {
@@ -83,12 +82,11 @@ export default function PresentationHero() {
                       <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center shadow-sm transition duration-300 ease-out will-change-transform hover:z-10 hover:scale-[1.045] hover:border-[#0F6B78]/45 hover:shadow-lg hover:shadow-zinc-400/40">
                         <img
                           src={skill.iconSrc}
-                          alt=""
+                          alt={skill.name}
                           width={64}
                           height={64}
                           className="h-16 w-16 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                           loading="lazy"
-                          aria-hidden
                         />
                       </div>
                     </li>

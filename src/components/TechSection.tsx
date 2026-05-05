@@ -1,10 +1,12 @@
 "use client";
 
+import {useId} from "react";
 import {useTranslations} from "next-intl";
 import {SKILL_CATEGORIES, getSkillsForCategory} from "@/data/skill";
 
 export default function TechSection() {
   const t = useTranslations("tech");
+  const scopeId = useId();
 
   return (
     <section
@@ -17,7 +19,7 @@ export default function TechSection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(#0F6B78_0.8px,transparent_0.8px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden
       />
 
@@ -25,7 +27,7 @@ export default function TechSection() {
         <header className="mx-auto max-w-2xl text-center">
           <h2
             id="tech-heading"
-            className="mt-4 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
+            className="mt-1 text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
           >
             {t("title")}
           </h2>
@@ -36,18 +38,29 @@ export default function TechSection() {
             const skills = getSkillsForCategory(cat);
             if (skills.length === 0) return null;
 
+            const headingId = `${scopeId}-category-${cat.id}`;
+            const descId = `${headingId}-desc`;
+
             return (
-              <div key={cat.id}>
-                <h3 className="text-lg font-semibold text-[#0F6B78] sm:text-xl">
+              <section
+                key={cat.id}
+                className="scroll-mt-28"
+                aria-labelledby={headingId}
+                aria-describedby={descId}
+              >
+                <h3
+                  id={headingId}
+                  className="text-lg font-semibold text-[#0F6B78] sm:text-xl"
+                >
                   {t(`categories.${cat.id}.title`)}
                 </h3>
-                <p className="mt-1 max-w-2xl text-sm text-zinc-600 sm:text-base">
+                <p
+                  id={descId}
+                  className="mt-1 max-w-2xl text-sm text-zinc-600 sm:text-base"
+                >
                   {t(`categories.${cat.id}.description`)}
                 </p>
-                <ul
-                  className="mt-4 flex flex-wrap gap-3 sm:gap-4"
-                  aria-label={t(`categories.${cat.id}.title`)}
-                >
+                <ul className="mt-4 flex flex-wrap gap-3 sm:gap-4">
                   {skills.map((skill) => (
                     <li
                       key={skill.id}
@@ -70,7 +83,7 @@ export default function TechSection() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             );
           })}
         </div>

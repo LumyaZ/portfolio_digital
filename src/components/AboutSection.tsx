@@ -2,26 +2,26 @@
 
 import type {CSSProperties} from "react";
 import {useCallback, useMemo, useState} from "react";
-import {useLocale, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 import type {Passion, PassionId} from "@/data/passion";
 import {PASSIONS} from "@/data/passion";
 
-const LEFT_INDICES = [0, 2, 4];
-const RIGHT_INDICES = [1, 3, 5];
+function toPairRows(passions: readonly Passion[]): {left: Passion; right: Passion}[] {
+  if (passions.length % 2 !== 0) {
+    throw new Error(`PASSIONS doit contenir un nombre pair d’éléments (reçu : ${passions.length}).`);
+  }
+  const rows: {left: Passion; right: Passion}[] = [];
+  for (let i = 0; i < passions.length; i += 2) {
+    rows.push({left: passions[i]!, right: passions[i + 1]!});
+  }
+  return rows;
+}
 
-const PAIR_ROWS: {left: Passion; right: Passion}[] = LEFT_INDICES.map((li, i) => ({
-  left: PASSIONS[li],
-  right: PASSIONS[RIGHT_INDICES[i]]
-}));
+const PAIR_ROWS = toPairRows(PASSIONS);
 
-/**
- * À partir de `sm` : chevauchement type « pile » (un peu moins agressif = cartes un peu plus basses au repos).
- * En mobile : pas de -mt — sinon la rangée suivante recouvre la 2ᵉ carte et on lit 1 + 2 + 2 au lieu de 2 + 2 + 2.
- */
 const ROW_OVERLAP =
   "max-sm:mt-5 sm:-mt-9 md:-mt-12 lg:-mt-[3.25rem]";
 
-/** Rangée juste sous une carte ouverte : un peu plus d’air (surtout en mobile où la base est déjà en marge positive). */
 const ROW_BELOW_EXPANDED =
   "max-sm:mt-7 sm:mt-4 md:mt-5 lg:mt-6";
 
@@ -53,93 +53,67 @@ function PassionPairCard({
   expandedId: PassionId | null;
   onToggleExpand: (id: PassionId) => void;
 }) {
-  const locale = useLocale();
   const total = PAIR_ROWS.length;
   const grad = stackGradientClass(depth, total);
   const light = depth === total - 1 && total > 1;
-
-  const expandable = true;
   const expanded = expandedId === passion.id;
 
-  const ariaExpand = locale === "fr" ? "Voir tout le texte" : "Show full text";
-  const ariaCollapse = locale === "fr" ? "Réduire" : "Collapse";
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (!expandable) return;
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onToggleExpand(passion.id);
-      }
-    },
-    [expandable, onToggleExpand, passion.id]
-  );
+  const titleText = t(`passions.${passion.id}.title`);
+  const ariaLabel = expanded
+    ? t("collapsePassion", {title: titleText})
+    : t("expandPassion", {title: titleText});
 
   return (
-    <div
-      role={expandable ? "button" : undefined}
-      tabIndex={expandable ? 0 : undefined}
-      aria-expanded={expandable ? expanded : undefined}
-      aria-label={expandable ? (expanded ? ariaCollapse : ariaExpand) : undefined}
-      className={`about-stack-card flex min-h-0 w-full min-w-0 max-w-md touch-manipulation flex-col rounded-2xl border border-white/20 shadow-lg transition-[box-shadow,transform] duration-300 ease-out sm:max-w-lg md:max-w-xl lg:min-w-0 lg:max-w-none lg:flex-1 lg:self-stretch ${
+    <button
+      type="button"
+      aria-expanded={expanded}
+      aria-label={ariaLabel}
+      onClick={() => onToggleExpand(passion.id)}
+      className={`about-stack-card flex min-h-0 w-full min-w-0 max-w-md touch-manipulation flex-col rounded-2xl border border-white/20 text-left shadow-lg transition-[box-shadow,transform] duration-300 ease-out sm:max-w-lg md:max-w-xl lg:min-w-0 lg:max-w-none lg:flex-1 lg:self-stretch focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78] focus-visible:ring-2 focus-visible:ring-white/40 ${
         expanded
-          ? "relative z-[70] max-sm:z-40 overflow-visible shadow-2xl ring-2 ring-white/35 ring-offset-2 ring-offset-transparent max-sm:ring-1 max-sm:ring-offset-0"
+          ? "relative z-70 max-sm:z-40 overflow-visible shadow-2xl ring-2 ring-white/35 ring-offset-2 ring-offset-transparent max-sm:ring-1 max-sm:ring-offset-0"
           : "overflow-hidden"
-      } ${expandable ? "cursor-pointer hover:brightness-[1.03] active:scale-[0.99]" : ""} ${
-        isLastRow ? "h-full" : "h-full"
-      } ${side === "left" ? "lg:mr-0.5" : "lg:ml-0.5"} ${grad}`}
+      } cursor-pointer hover:brightness-[1.03] active:scale-[0.99] h-full ${side === "left" ? "lg:mr-0.5" : "lg:ml-0.5"} ${grad}`}
       style={{"--pair-row": rowIndex} as CSSProperties}
-      onClick={expandable ? () => onToggleExpand(passion.id) : undefined}
-      onKeyDown={handleKeyDown}
     >
       <div className="flex min-h-0 flex-1 items-stretch justify-between gap-3 px-4 py-4 sm:gap-4 sm:px-5 sm:py-5">
         <div className="flex min-w-0 flex-1 flex-col justify-center">
           <h3
-            className={`pointer-events-none text-base font-semibold leading-snug tracking-tight sm:text-lg ${
+            className={`text-base font-semibold leading-snug tracking-tight sm:text-lg ${
               light ? "text-[#0F6B78]" : "text-white"
             }`}
           >
-            {t(`passions.${passion.id}.title`)}
+            {titleText}
           </h3>
-          {expandable ? (
-            <div
-              className={`mt-2 overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                expanded ? "max-h-[min(70vh,28rem)]" : "max-h-[5.25rem] sm:max-h-[6rem]"
-              }`}
-            >
-              <p
-                className={`break-words text-sm leading-relaxed sm:text-[0.9375rem] ${
-                  light ? "text-zinc-700" : "text-white/88"
-                }`}
-              >
-                {t(`passions.${passion.id}.body`)}
-              </p>
-            </div>
-          ) : (
+          <div
+            className={`mt-2 overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              expanded ? "max-h-[min(70vh,28rem)]" : "max-h-21 sm:max-h-24"
+            }`}
+          >
             <p
-              className={`mt-2 break-words text-sm leading-relaxed sm:text-[0.9375rem] ${
+              className={`wrap-break-word text-sm leading-relaxed sm:text-[0.9375rem] ${
                 light ? "text-zinc-700" : "text-white/88"
               }`}
             >
               {t(`passions.${passion.id}.body`)}
             </p>
-          )}
+          </div>
         </div>
-        <div className="pointer-events-none flex shrink-0 items-center self-stretch">
+        <div className="flex shrink-0 items-center self-stretch">
           <div className="rounded-xl border border-black/5 bg-white p-2 shadow-md sm:p-2.5">
             <img
               src={passion.iconSrc}
               alt=""
               width={52}
               height={52}
-              className="h-11 w-11 object-contain sm:h-[3.25rem] sm:w-[3.25rem]"
+              className="h-11 w-11 object-contain sm:h-13 sm:w-13"
               loading="lazy"
               aria-hidden
             />
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -177,7 +151,7 @@ export default function AboutSection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(#0F6B78_0.8px,transparent_0.8px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden
       />
 
@@ -230,12 +204,12 @@ export default function AboutSection() {
                     />
 
                     <div
-                      className="mx-auto h-px w-full max-w-[10rem] shrink-0 rounded-full bg-gradient-to-r from-transparent via-[#0F6B78]/35 to-transparent lg:hidden"
+                      className="mx-auto h-px w-full max-w-40 shrink-0 rounded-full bg-linear-to-r from-transparent via-[#0F6B78]/35 to-transparent lg:hidden"
                       aria-hidden
                     />
 
                     <div
-                      className="hidden w-px shrink-0 self-stretch rounded-full bg-gradient-to-b from-transparent from-[10%] via-[#0F6B78]/45 via-1/2 to-transparent to-[90%] lg:mx-1 lg:block"
+                      className="hidden w-px shrink-0 self-stretch rounded-full bg-linear-to-b from-transparent from-10% via-[#0F6B78]/45 via-1/2 to-transparent to-90% lg:mx-1 lg:block"
                       aria-hidden
                     />
 

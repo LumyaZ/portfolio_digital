@@ -2,23 +2,39 @@
 
 import Link from "next/link";
 import {useLocale, useTranslations} from "next-intl";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const navKeys = ["projects", "training", "tech", "story", "about"] as const;
+
+const linkFocus =
+  "rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]";
 
 export default function SiteNavBar() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      queueMicrotask(() => menuButtonRef.current?.focus());
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    queueMicrotask(() => firstMobileLinkRef.current?.focus());
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <nav
@@ -26,16 +42,18 @@ export default function SiteNavBar() {
       aria-label={t("aria")}
     >
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6 sm:py-4">
-        {/* Marque à gauche */}
-        <p className="min-w-0 truncate text-sm sm:text-base">
+        <Link
+          href={`/${locale}`}
+          className={`min-w-0 truncate text-sm sm:text-base hover:opacity-90 ${linkFocus}`}
+        >
           <span className="font-bold">{t("brandName")}</span>
-          <span className="mx-2">|</span>
+          <span className="mx-2 opacity-90" aria-hidden>
+            |
+          </span>
           <span>{t("brandRole")}</span>
-        </p>
+        </Link>
 
-        {/* Tout le reste à droite */}
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
-          {/* Desktop nav */}
           <ul className="hidden flex-wrap items-center gap-x-2 gap-y-1 text-sm md:flex md:text-base">
             {navKeys.map((key, i) => (
               <li key={key} className="flex items-center gap-2">
@@ -44,17 +62,20 @@ export default function SiteNavBar() {
                     |
                   </span>
                 )}
-                <Link href={`/${locale}#${key}`} className="font-normal hover:underline">
+                <Link
+                  href={`/${locale}#${key}`}
+                  className={`font-normal hover:underline ${linkFocus}`}
+                >
                   {t(`links.${key}`)}
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Burger mobile (à droite en mobile) */}
           <button
+            ref={menuButtonRef}
             type="button"
-            className="order-2 md:order-1 inline-flex h-11 min-w-11 shrink-0 items-center justify-center rounded-md border border-[#0F6B78]/40 md:hidden"
+            className={`order-2 md:order-1 inline-flex h-11 min-w-11 shrink-0 items-center justify-center rounded-md border border-[#0F6B78]/40 md:hidden ${linkFocus}`}
             aria-expanded={open}
             aria-controls="nav-mobile"
             onClick={() => setOpen((v) => !v)}
@@ -74,22 +95,21 @@ export default function SiteNavBar() {
             )}
           </button>
 
-          {/* Langue (à gauche du burger en mobile) */}
           <div className="order-1 md:order-2 shrink-0">
             <LanguageSwitcher />
           </div>
         </div>
       </div>
 
-      {/* Mobile panel */}
       {open && (
         <div id="nav-mobile" className="border-t border-[#0F6B78]/20 bg-[#fafafa] px-6 py-4 md:hidden">
           <ul className="flex flex-col gap-1">
-            {navKeys.map((key) => (
+            {navKeys.map((key, index) => (
               <li key={key}>
                 <Link
+                  ref={index === 0 ? firstMobileLinkRef : undefined}
                   href={`/${locale}#${key}`}
-                  className="block rounded-md py-3 text-base font-medium hover:bg-black/5"
+                  className={`block rounded-md py-3 text-base font-medium hover:bg-black/5 ${linkFocus}`}
                   onClick={() => setOpen(false)}
                 >
                   {t(`links.${key}`)}
