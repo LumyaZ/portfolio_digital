@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import type {ProjectId} from "@/data/projects";
-import {getProjectCoverPopup, PROJECT_COVER, PROJECT_IDS, PROJECT_WEB_URL} from "@/data/projects";
+import {getProjectCoverPopup, PROJECT_COVER, PROJECT_GALLERY, PROJECT_IDS, PROJECT_WEB_URL} from "@/data/projects";
 
 export default function ProjectCardsList() {
   const t = useTranslations("projects");
@@ -39,7 +39,8 @@ export default function ProjectCardsList() {
 
   /** Même hauteur de carte pour toutes les zones image des popups. */
   const popupImageBoxClass =
-    "flex h-[120px] w-full items-center justify-center p-2.5 sm:h-[132px] sm:p-3 md:h-[144px]";
+    "flex h-[104px] w-full items-center justify-center p-2 sm:h-[112px] sm:p-2.5 md:h-[124px]";
+
   const popupImageImgClass =
     "max-h-[76%] max-w-[86%] object-contain object-center sm:max-h-[74%] sm:max-w-[84%]";
   /** Musculia + YtechUnion : logos plus petits. */
@@ -48,33 +49,29 @@ export default function ProjectCardsList() {
   const popupImageImgSmallerClassYtechUnion =
     "max-h-[48%] max-w-[68%] object-contain object-center sm:max-h-[46%] sm:max-w-[66%] md:max-h-[44%]";
 
-  /** Craft2Give : bannière large, remplit la carte (object-cover, sans bandes blanches sur les côtés). */
+  /** Craft2Give : bannière large, remplit la carte (object-cover). */
   const popupImageBoxCraft2giveClass =
-    "relative flex h-[120px] w-full items-center justify-center overflow-hidden p-0 sm:h-[132px] md:h-[144px]";
+    "relative flex h-[104px] w-full items-center justify-center overflow-hidden p-0 sm:h-[112px] md:h-[124px]";
+
+  const musculiaGallery = useMemo(() => PROJECT_GALLERY.musculia ?? [], []);
+  const [musculiaIdx, setMusculiaIdx] = useState(0);
+  const [isMusculiaLightboxOpen, setIsMusculiaLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (openId !== "musculia") {
+      setMusculiaIdx(0);
+      setIsMusculiaLightboxOpen(false);
+    }
+  }, [openId]);
 
   return (
     <>
-      <ul className="relative w-full list-none">
+      <ul className="relative mx-auto w-full max-w-7xl list-none px-4 pt-6 pb-6 sm:px-6 sm:pt-8 sm:pb-8 lg:px-8 lg:pt-10 lg:pb-10">
         {PROJECT_IDS.map((id: ProjectId, index) => {
           const reverse = index % 2 === 1;
           const isCardDynatrust = id === "dynatrust";
           const coverCard = PROJECT_COVER[id];
           const title = t(`items.${id}.title`);
-          const hoverTitle = t(`items.${id}.hoverTitle`);
-
-          const slideIn = reverse
-            ? "-translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
-            : "translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100";
-
-          const overlayGradient = reverse
-            ? [
-                "bg-[linear-gradient(to_bottom,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]",
-                "md:bg-[linear-gradient(to_right,rgb(3,3,3)_0%,rgb(3,3,3)_42%,rgb(10,10,10)_50%,rgb(18,18,18)_58%,rgb(18,18,18)_100%)]",
-              ].join(" ")
-            : [
-                "bg-[linear-gradient(to_bottom,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]",
-                "md:bg-[linear-gradient(to_right,rgb(18,18,18)_0%,rgb(18,18,18)_42%,rgb(10,10,10)_50%,rgb(3,3,3)_58%,rgb(3,3,3)_100%)]",
-              ].join(" ");
 
           return (
             <li key={id} className="border-0">
@@ -87,86 +84,64 @@ export default function ProjectCardsList() {
               <button
                 type="button"
                 onClick={() => setOpenId(id)}
-                className="group block w-full cursor-pointer border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0F6B78] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fafafa]"
+                className="group block w-full cursor-pointer rounded-2xl border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0F6B78] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fafafa]"
                 aria-label={`${title} — ${t("openDetail")}`}
               >
-                <div
-                  className={[
-                    "relative flex min-h-[min(520px,85svh)] flex-col overflow-hidden md:min-h-[50svh] md:flex-row",
-                    reverse ? "md:flex-row-reverse" : "",
-                  ].join(" ")}
-                >
+                <div className="overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-md ring-1 ring-zinc-950/[0.04] transition-transform duration-200 ease-out hover:scale-[1.01] hover:shadow-xl active:scale-[0.995]">
                   <div
                     className={[
-                      "pointer-events-none absolute inset-0 z-[12] transition-opacity duration-300",
-                      "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100",
-                      overlayGradient,
-                    ].join(" ")}
-                    aria-hidden
-                  />
-
-                  <figure
-                    className={[
-                      "relative z-0 h-56 w-full shrink-0 overflow-hidden border-b border-zinc-200/80 md:h-auto md:min-h-[50svh] md:w-1/2 md:border-b-0",
-                      isCardDynatrust ? "bg-[#5327A7]" : "bg-white",
+                      "relative flex min-h-[260px] flex-col overflow-hidden sm:min-h-[300px] md:min-h-[260px] lg:min-h-[300px] md:flex-row",
+                      reverse ? "md:flex-row-reverse" : "",
                     ].join(" ")}
                   >
-                    {coverCard ? (
-                      <Image
-                        src={coverCard}
-                        alt=""
-                        fill
-                        className="object-contain object-center"
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        priority={index === 0}
-                        aria-hidden
-                      />
-                    ) : (
-                      <div
-                        className="absolute inset-0 bg-gradient-to-br from-[#0F6B78]/28 via-zinc-100 to-white"
-                        aria-hidden
-                      />
-                    )}
-                  </figure>
-
-                  <div
-                    className="pointer-events-none absolute inset-0 z-[22] flex items-center px-6 md:px-12"
-                    aria-hidden
-                  >
-                    <p
+                    <figure
                       className={[
-                        "max-w-[min(90%,42rem)] text-2xl font-bold leading-tight text-white drop-shadow-sm transition duration-300 sm:text-3xl md:text-4xl",
-                        reverse ? "mr-auto text-left" : "ml-auto text-right",
-                        slideIn,
+                        "relative z-0 h-36 w-full shrink-0 overflow-hidden border-b border-zinc-200/80 sm:h-44 md:h-auto md:min-h-[260px] md:w-1/2 md:border-b-0 lg:min-h-[300px]",
+                        isCardDynatrust ? "bg-[#5327A7]" : "bg-white",
                       ].join(" ")}
                     >
-                      {hoverTitle}
-                    </p>
-                  </div>
+                      {coverCard ? (
+                        <Image
+                          src={coverCard}
+                          alt=""
+                          fill
+                          className="object-contain object-center"
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                          priority={index === 0}
+                          aria-hidden
+                        />
+                      ) : (
+                        <div
+                          className="absolute inset-0 bg-gradient-to-br from-[#0F6B78]/28 via-zinc-100 to-white"
+                          aria-hidden
+                        />
+                      )}
+                    </figure>
 
-                  <div className="relative z-[10] flex w-full flex-col justify-center bg-white py-8 md:w-1/2 md:py-12">
-                    <div className="px-6 transition-opacity duration-300 group-hover:opacity-30 group-focus-within:opacity-30 md:px-10 lg:px-14">
-                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0F6B78]">
-                        {t(`items.${id}.badge`)}
-                      </p>
-                    </div>
+                    <div className="relative z-[10] flex w-full flex-col justify-center bg-white py-4 sm:py-5 md:w-1/2 md:py-6 lg:py-8">
+                      <div className="px-6 md:px-10 lg:px-14">
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0F6B78]">
+                          {t(`items.${id}.badge`)}
+                        </p>
+                      </div>
 
-                    <h3 className="px-6 text-2xl font-bold tracking-tight text-zinc-900 transition-opacity duration-300 group-hover:invisible group-hover:opacity-0 group-focus-within:invisible group-focus-within:opacity-0 md:px-10 md:text-3xl lg:px-14">
-                      {title}
-                    </h3>
+                      <h3 className="px-6 text-2xl font-bold tracking-tight text-zinc-900 md:px-10 md:text-3xl lg:px-14">
+                        {title}
+                      </h3>
 
-                    <div className="mt-4 space-y-3 px-6 transition-opacity duration-300 group-hover:opacity-30 group-focus-within:opacity-30 md:px-10 lg:px-14">
-                      <p className="max-w-xl text-base leading-relaxed text-zinc-600">
-                        {t(`items.${id}.description`)}
-                      </p>
-                      <p className="text-sm text-zinc-500">
-                        {t(`items.${id}.tags`)
-                          .split(",")
-                          .map((tag) => tag.trim())
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                      <p className="text-xs font-medium text-zinc-400">{t("v2Hint")}</p>
+                      <div className="mt-4 space-y-3 px-6 md:px-10 lg:px-14">
+                        <p className="max-w-xl text-base leading-relaxed text-zinc-600">
+                          {t(`items.${id}.description`)}
+                        </p>
+                        <p className="text-sm text-zinc-500">
+                          {t(`items.${id}.tags`)
+                            .split(",")
+                            .map((tag) => tag.trim())
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </p>
+                        <p className="text-xs font-medium text-zinc-400">{t("v2Hint")}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,7 +153,7 @@ export default function ProjectCardsList() {
 
       <dialog
         ref={dialogRef}
-        className="fixed left-1/2 top-1/2 z-[100] w-[min(100vw-1.5rem,42rem)] max-h-[min(92dvh,900px)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-[#0F6B78]/25 bg-white p-0 text-zinc-900 shadow-2xl backdrop:bg-black/50 sm:w-[min(100vw-2rem,56rem)]"
+        className="fixed inset-0 z-[100] m-0 h-screen w-screen max-h-none max-w-none border-0 bg-transparent p-3 backdrop:bg-black/50 sm:p-4"
         onClose={closeModal}
         onCancel={(e) => {
           e.preventDefault();
@@ -187,9 +162,9 @@ export default function ProjectCardsList() {
         aria-labelledby="project-modal-title"
       >
         {openId ? (
-          <div className="relative flex max-h-[min(92dvh,900px)] flex-col">
-            <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-y-auto">
-              <div className="relative overflow-hidden px-5 pb-5 pt-6 sm:px-10 sm:pb-6 sm:pt-8 lg:px-14">
+          <div className="relative mx-auto my-auto flex w-full max-w-[42rem] max-h-[calc(100dvh-1.5rem)] flex-col overflow-hidden rounded-[1.25rem] border border-[#0F6B78]/25 bg-white text-zinc-900 shadow-2xl sm:max-w-[56rem] sm:max-h-[calc(100dvh-2rem)]">
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden">
+              <div className="relative shrink-0 overflow-hidden px-5 pb-3 pt-4 sm:px-8 sm:pb-4 sm:pt-5 lg:px-10">
                 <div
                   className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
                   aria-hidden
@@ -211,7 +186,7 @@ export default function ProjectCardsList() {
                   <div className="flex items-start justify-between gap-4">
                     <h2
                       id="project-modal-title"
-                      className="min-w-0 flex-1 text-2xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-3xl"
+                      className="min-w-0 flex-1 text-xl font-bold leading-snug tracking-tight text-zinc-900 sm:text-2xl"
                     >
                       {t(`items.${openId}.title`)}
                     </h2>
@@ -225,7 +200,7 @@ export default function ProjectCardsList() {
                     </button>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                  <div className="mt-2 flex w-full flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0F6B78]">
                       {t(`items.${openId}.badge`)}
                     </p>
@@ -241,13 +216,9 @@ export default function ProjectCardsList() {
                     ) : null}
                   </div>
 
-                  <div className="mt-5 flex justify-center sm:mt-6" aria-hidden>
-                    <div className="mx-auto h-px w-full max-w-[10rem] shrink-0 rounded-full bg-gradient-to-r from-transparent via-[#0F6B78]/35 to-transparent sm:max-w-xs md:max-w-sm" />
-                  </div>
-
                   {popupImage ? (
                     <div
-                      className={`mt-5 sm:mt-6 ${
+                      className={`mt-3 sm:mt-4 ${
                         isDynatrust
                           ? "overflow-hidden rounded-xl border border-zinc-200/80 bg-[#5327A7] shadow-sm"
                           : isMusculia
@@ -298,7 +269,7 @@ export default function ProjectCardsList() {
                     </div>
                   ) : null}
 
-                  <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
+                  <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4">
                     {t(`items.${openId}.tags`)
                       .split(",")
                       .map((s) => s.trim())
@@ -315,10 +286,164 @@ export default function ProjectCardsList() {
                 </div>
               </div>
 
-              <div className="relative z-10 flex-1 border-t border-zinc-200/80 bg-white px-5 pb-8 pt-5 sm:px-10 sm:pb-10 sm:pt-6 lg:px-14">
-                <p className="max-w-3xl whitespace-pre-line text-base leading-relaxed text-zinc-600 sm:text-lg">
+              <div className="relative z-20 min-h-0 flex-1 overflow-y-auto overscroll-contain border-t border-zinc-200/80 bg-white px-5 pb-8 pt-5 sm:px-10 sm:pb-10 sm:pt-6 lg:px-14">
+                <p className="max-w-3xl whitespace-pre-line text-[15px] leading-6 text-zinc-600 sm:text-base">
                   {t(`items.${openId}.detailBody`)}
                 </p>
+
+                {openId === "musculia" && musculiaGallery.length > 0 ? (
+                  <div className="mt-4">
+                    {/* Miniatures (très petites) */}
+                    <div className="flex flex-wrap gap-2">
+                      {musculiaGallery.map((src, idx) => {
+                        const isActive = idx === musculiaIdx;
+
+                        return (
+                          <button
+                            key={src}
+                            type="button"
+                            onClick={() => {
+                              setMusculiaIdx(idx);
+                              setIsMusculiaLightboxOpen(true);
+                            }}
+                            className={[
+                              "group relative overflow-hidden rounded-lg border bg-white shadow-sm transition",
+                              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]",
+                              isActive
+                                ? "border-[#0F6B78]/50 ring-2 ring-[#0F6B78]/20"
+                                : "border-zinc-200 hover:border-[#0F6B78]/35",
+                            ].join(" ")}
+                            aria-label={`Ouvrir l'image ${idx + 1}`}
+                          >
+                            <div className="relative h-12 w-16 sm:h-14 sm:w-20">
+                              <Image
+                                src={src}
+                                alt=""
+                                fill
+                                className="object-cover object-center transition-transform duration-200 group-hover:scale-[1.03]"
+                                sizes="80px"
+                              />
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-between text-xs text-zinc-500">
+                      <span>
+                        {musculiaIdx + 1} / {musculiaGallery.length}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setIsMusculiaLightboxOpen(true)}
+                        className="rounded-full border border-zinc-200 bg-white px-3 py-1 font-semibold text-[#0F6B78] shadow-sm transition hover:bg-[#f4fafb] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]"
+                      >
+                        Agrandir
+                      </button>
+                    </div>
+
+                    {/* Lightbox / viewer grand format */}
+                    {isMusculiaLightboxOpen ? (
+                      <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm sm:p-6">
+                        <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-white shadow-2xl">
+                          {/* Header lightbox */}
+                          <div className="flex items-center justify-between gap-3 border-b border-zinc-200/80 bg-white px-4 py-3 sm:px-6">
+                            <div className="min-w-0">
+                              <p className="text-sm font-bold tracking-[0.18em] text-[#0F6B78]">MUSCULIA</p>
+                              <p className="text-xs text-zinc-500">
+                                {musculiaIdx + 1} / {musculiaGallery.length}
+                              </p>
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => setIsMusculiaLightboxOpen(false)}
+                              className="shrink-0 rounded-full border border-[#0F6B78]/30 bg-white px-3 py-1.5 text-sm font-semibold text-[#0F6B78] shadow-sm transition hover:bg-[#f4fafb] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]"
+                              aria-label="Fermer la galerie"
+                            >
+                              Fermer
+                            </button>
+                          </div>
+
+                          {/* Viewer */}
+                          <div className="relative bg-zinc-950">
+                            <div className="relative mx-auto h-[min(52dvh,420px)] w-full max-w-5xl">
+                              <Image
+                                src={musculiaGallery[musculiaIdx]}
+                                alt=""
+                                fill
+                                className="object-contain object-center"
+                                sizes="(min-width: 1024px) 64rem, 95vw"
+                                priority
+                              />
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setMusculiaIdx((i) => (i - 1 + musculiaGallery.length) % musculiaGallery.length)
+                              }
+                              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/90 px-3 py-2 text-sm font-semibold text-zinc-900 shadow-lg backdrop-blur hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78] sm:left-4"
+                              aria-label="Image précédente"
+                            >
+                              ←
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => setMusculiaIdx((i) => (i + 1) % musculiaGallery.length)}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/90 px-3 py-2 text-sm font-semibold text-zinc-900 shadow-lg backdrop-blur hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78] sm:right-4"
+                              aria-label="Image suivante"
+                            >
+                              →
+                            </button>
+                          </div>
+
+                          {/* Filmstrip */}
+                          <div className="border-t border-zinc-200/80 bg-white px-4 py-3 sm:px-6">
+                            <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                              {musculiaGallery.map((src, idx) => {
+                                const isActive = idx === musculiaIdx;
+
+                                return (
+                                  <button
+                                    key={`${src}-${idx}`}
+                                    type="button"
+                                    onClick={() => setMusculiaIdx(idx)}
+                                    className={[
+                                      "relative shrink-0 overflow-hidden rounded-lg border bg-white shadow-sm transition",
+                                      "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]",
+                                      isActive
+                                        ? "border-[#0F6B78]/60 ring-2 ring-[#0F6B78]/20"
+                                        : "border-zinc-200 hover:border-[#0F6B78]/35",
+                                    ].join(" ")}
+                                    aria-label={`Afficher l'image ${idx + 1}`}
+                                  >
+                                    <div
+                                      className={
+                                        isActive
+                                          ? "relative h-16 w-28 sm:h-20 sm:w-36"
+                                          : "relative h-14 w-24 sm:h-16 sm:w-28"
+                                      }
+                                    >
+                                      <Image
+                                        src={src}
+                                        alt=""
+                                        fill
+                                        className="object-cover object-center"
+                                        sizes={isActive ? "180px" : "140px"}
+                                      />
+                                    </div>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>

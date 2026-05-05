@@ -38,14 +38,14 @@
               "hoverTitle": "Dynatrust software",
               "description": "GRC software developed during my internship at DYNATRUST, the goal was to develop the SaaS solution aiming to establish a management compliant with international standards and norms in cybersecurity.",
               "tags": "Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Python, GitLab CI/CD",
-              "detailBody": "Write the full Dynatrust story here: scope, deliverables, stack, what you learned.\n\nUse \\n\\n between paragraphs in this JSON string."
+              "detailBody": "For 3 years, I worked as a full-stack Java / Angular developer at the Dynatrust start-up.\n\nMy main mission was to design the GRC (Governance, Risks and Compliance) SaaS application, a platform allowing to simplify and secure the cybersecurity compliance of organizations, suppliers and clients, through different standards such as ISO 27001 or GDPR.\n\nDuring this experience, I was able to develop my skills continuously over these three years, developing a strong ability to adapt to technical environments and evolving needs of the product. I worked in various work contexts: in a duo with the CTO, within a development team supervised by an engineering manager, as well as in a role of accompaniment of junior profiles (trainees), which allowed me to strengthen my skills in transmission and pedagogy.\n\nI thus actively participated in the development of the application on the entire technical stack. On the back-end side, I worked on a Java-based architecture based on Spring Cloud, particularly using a microservices system using Netflix Eureka. On the front-end side, I designed and developed many components under Angular, strengthening my mastery of modern architectures as well as good development practices (modularity, reusability, maintainability).\n\nI also contributed to the integration of generative AI features, using Python and the LangChain library, which allowed me to explore new use cases around automation and intelligent data processing.\n\nOn the technical level, this experience allowed me to become autonomous on the entire development chain, including versioning tools like Git, DevOps environments with Docker, as well as relational and non-relational database management (MySQL, MongoDB, PostgreSQL)."
           },
           "musculia": {
               "badge": "Full-Stack Developer",
               "title": "Musculia",
               "hoverTitle": "Musculia application",
               "description": "Web application for personalized muscle training generation using AI, adapted to each user.",
-              "tags": "Java, Spring Boot, MySQL, Python, AI, Docker",
+              "tags": "Java, Spring Boot, MySQL, Python, AI, Docker, Angular",
               "detailBody": "Musculia details: problem, solution, architecture, AI, outcomes."
           },
           "ytechUnion": {
@@ -54,7 +54,7 @@
               "hoverTitle": "Web agency YtechUnion",
               "description": "Web agency creating portfolio sites for student and professional projects. Development of sites from the mockup to hosting.",
               "tags": "React, Next.js, Tailwind CSS, TypeScript, Figma",
-              "detailBody": "YtechUnion details: team, deliverables, frontend stack, hosting."
+              "detailBody": "During the Ydays project of my last year of MASTER, I participated as project lead and web devops at the YtechUnion project.\n\nYTechUnion is a student project aiming to help students create their own websites. The initiative is led by a motivated and passionate team in web development, with the mission to facilitate the creation of portfolio sites for students and their projects.\n\nWe have realized three main projects with different approaches according to the needs of the clients.\n\nLearnCyber: Project realized from A to Z in the absence of a provided mockup by the client. We accompanied the team throughout the process, from the definition of needs to the online launch of the site.\n\nPropulse: The client provided us with a detailed mockup, so we mainly ensured technical integration while respecting the graphic requirements.\n\nNarcisse: Hybrid project with a partial mockup. We worked closely with the client to adjust the design and complete the missing parts.\n\nWe initially considered creating a template of mockups to facilitate the design process, but this idea was not implemented in the end."
           },
           "craft2give": {
               "badge": "Front-End Developer | participant & donor",
@@ -62,7 +62,7 @@
               "hoverTitle": "Craft2Give project",
               "description": "Ingestion, transformation, and load jobs into a warehouse with scheduling and monitoring.",
               "tags": "React, Twitch",
-              "detailBody": "Craft2Give details: nonprofit context, your role, features, stack."
+              "detailBody": "During a student project at Ynov, I participated in a charitable initiative in favor of the SPA as a Front-End developer.\n\nThe main objective of this project was to organize a live on the Twitch platform to collect funds for the association, while raising awareness of the public to the animal cause. To enrich the experience and encourage donations, my team and I designed and developed a Minecraft module allowing viewers to interact in real time with the game through their contributions.\n\nWithin this project, I was primarily responsible for the graphic and communication part. I notably designed and developed the dedicated website for the event, ensuring a clear, attractive and adapted interface to the target audience.\n\nThis project allowed me to strengthen my technical skills in Front-End development, but also to work on aspects related to user experience, teamwork and the management of a real-impact project.\n\nAt the end of the live, we managed to collect more than 500€, entirely refunded to the association, contributing concretely to supporting its actions."
           }
       }
     },
