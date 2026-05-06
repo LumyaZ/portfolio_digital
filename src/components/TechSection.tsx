@@ -11,7 +11,7 @@ export default function TechSection() {
   return (
     <section
       id="tech"
-      className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/80 py-20 sm:py-28"
+      className="relative overflow-hidden border-t border-zinc-200/80 pt-12 pb-20 sm:py-28"
       aria-labelledby="tech-heading"
     >
       <div

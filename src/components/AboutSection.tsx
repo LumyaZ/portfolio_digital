@@ -135,7 +135,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-32 overflow-visible border-t border-zinc-200/80 py-14 sm:py-20"
+      className="relative overflow-visible border-t border-zinc-200/80 pt-10 pb-14 sm:py-20"
       aria-labelledby="about-heading"
     >
       <div

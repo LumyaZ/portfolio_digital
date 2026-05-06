@@ -72,9 +72,9 @@ export default function PresentationHero() {
 
           <div className="order-last min-w-0">
             <div className="flex flex-col gap-4">
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4">
                 {heroSkills.map((skill, index) => {
-                  const rowMobile = Math.floor(index / 2);
+                  const rowMobile = Math.floor(index / 3);
                   const delay = 1.15 + rowMobile * 0.12;
 
                   return (

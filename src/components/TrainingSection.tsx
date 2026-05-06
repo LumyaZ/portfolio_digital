@@ -220,7 +220,7 @@ export default function TrainingSection() {
   return (
     <section
       id="training"
-      className="relative scroll-mt-32 overflow-hidden border-t border-zinc-200/90 py-16 sm:py-24"
+      className="relative overflow-hidden border-t border-zinc-200/90 pt-10 pb-16 sm:py-24"
       aria-labelledby="training-heading"
     >
       <div

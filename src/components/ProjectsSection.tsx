@@ -8,7 +8,7 @@ export default async function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative scroll-mt-32 overflow-hidden py-0"
+      className="relative overflow-hidden py-0"
       aria-labelledby="projects-heading"
     >
       <div
@@ -29,7 +29,7 @@ export default async function ProjectsSection() {
       />
 
       <div className="relative">
-        <header className="mx-auto max-w-7xl px-6 pt-14 text-center sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+        <header className="mx-auto max-w-7xl px-6 pt-6 text-center sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
           <h2
             id="projects-heading"
             className="text-3xl font-bold tracking-tight text-[#0F6B78] sm:text-4xl md:text-5xl"
