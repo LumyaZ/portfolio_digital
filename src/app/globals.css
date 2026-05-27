@@ -39,11 +39,48 @@ body {
   }
 }
 
-/* Secours CSS si un blur reste dans le DOM (voir DecorVisibilityProvider) */
 html[data-hide-decor] .decor-blur,
 html[data-compact-viewport] .decor-blur,
 html[data-h-overflow] .decor-blur {
   display: none !important;
+}
+
+dialog.project-modal {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: inherit;
+}
+
+dialog.project-modal:not([open]) {
+  display: none;
+}
+
+dialog.project-modal[open] {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100dvh;
+  max-height: none;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+dialog.project-modal::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+
+@media (min-width: 640px) {
+  dialog.project-modal[open] {
+    padding: 1rem;
+  }
 }
 
 @keyframes slide-in-left {

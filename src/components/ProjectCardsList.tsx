@@ -164,7 +164,7 @@ export default function ProjectCardsList() {
 
       <dialog
         ref={dialogRef}
-        className="fixed inset-0 z-100 m-0 max-h-none max-w-none border-0 bg-transparent p-3 backdrop:bg-black/50 sm:p-4"
+        className="project-modal z-100"
         onClose={closeModal}
         onCancel={(e) => {
           e.preventDefault();
@@ -173,7 +173,7 @@ export default function ProjectCardsList() {
         aria-labelledby="project-modal-title"
       >
         {openId ? (
-          <div className="relative mx-auto my-auto flex w-full max-w-2xl max-h-[calc(100dvh-1.5rem)] flex-col overflow-hidden rounded-[1.25rem] border border-[#0F6B78]/25 bg-white text-zinc-900 shadow-2xl sm:max-w-4xl sm:max-h-[calc(100dvh-2rem)]">
+          <div className="project-modal-panel relative flex w-full max-w-2xl max-h-[calc(100dvh-1.5rem)] shrink-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#0F6B78]/25 bg-white text-zinc-900 shadow-2xl sm:max-w-4xl sm:max-h-[calc(100dvh-2rem)]">
             <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden">
               <div className="relative shrink-0 overflow-hidden px-5 pb-3 pt-4 sm:px-8 sm:pb-4 sm:pt-5 lg:px-10">
               <div
@@ -344,7 +344,7 @@ export default function ProjectCardsList() {
                       <button
                         type="button"
                         onClick={() => setIsMusculiaLightboxOpen(true)}
-                        className="rounded-full border border-zinc-200 bg-white px-3 py-1 font-semibold text-[#0F6B78] shadow-sm transition hover:bg-[#f4fafb] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78]"
+                        className="hidden rounded-full border border-zinc-200 bg-white px-3 py-1 font-semibold text-[#0F6B78] shadow-sm transition hover:bg-[#f4fafb] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78] sm:inline-flex"
                       >
                         {t("galleryEnlarge")}
                       </button>
