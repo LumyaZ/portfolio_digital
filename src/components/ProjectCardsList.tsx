@@ -4,6 +4,7 @@ import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {useEffect, useMemo, useRef, useState} from "react";
 import type {ProjectId} from "@/data/projects";
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import {getProjectCoverPopup, PROJECT_COVER, PROJECT_GALLERY, PROJECT_IDS, PROJECT_WEB_URL} from "@/data/projects";
 
 function splitTagsCsv(raw: string) {
@@ -103,7 +104,7 @@ export default function ProjectCardsList() {
                 className="group block w-full cursor-pointer rounded-2xl border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0F6B78] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fafafa]"
                 aria-label={`${title} — ${t("openDetail")}`}
               >
-                <div className="overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-md ring-1 ring-zinc-950/4 transition-transform duration-200 ease-out hover:scale-[1.01] hover:shadow-xl active:scale-[0.995] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:active:scale-100">
+                <div className="overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-md ring-1 ring-zinc-950/4 transition-transform duration-200 ease-out hover:scale-[1.01] hover:shadow-xl active:scale-[0.995] max-sm:hover:scale-100 max-sm:active:scale-100 motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:active:scale-100">
                   <div
                     className={[
                       "relative flex min-h-[260px] flex-col overflow-hidden sm:min-h-[300px] md:min-h-[260px] lg:min-h-[300px] md:flex-row",
@@ -163,7 +164,7 @@ export default function ProjectCardsList() {
 
       <dialog
         ref={dialogRef}
-        className="fixed inset-0 z-100 m-0 h-screen w-screen max-h-none max-w-none border-0 bg-transparent p-3 backdrop:bg-black/50 sm:p-4"
+        className="fixed inset-0 z-100 m-0 max-h-none max-w-none border-0 bg-transparent p-3 backdrop:bg-black/50 sm:p-4"
         onClose={closeModal}
         onCancel={(e) => {
           e.preventDefault();
@@ -175,18 +176,20 @@ export default function ProjectCardsList() {
           <div className="relative mx-auto my-auto flex w-full max-w-2xl max-h-[calc(100dvh-1.5rem)] flex-col overflow-hidden rounded-[1.25rem] border border-[#0F6B78]/25 bg-white text-zinc-900 shadow-2xl sm:max-w-4xl sm:max-h-[calc(100dvh-2rem)]">
             <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden">
               <div className="relative shrink-0 overflow-hidden px-5 pb-3 pt-4 sm:px-8 sm:pb-4 sm:pt-5 lg:px-10">
-                <div
+              <div
                   className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
                   aria-hidden
                 />
-                <div
-                  className="pointer-events-none absolute -left-16 top-20 h-48 w-48 rounded-full bg-[#0F6B78]/12 blur-3xl"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute -right-12 top-1/3 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl"
-                  aria-hidden
-                />
+                <DecorBlurLayer>
+                  <div
+                    className="decor-blur pointer-events-none absolute -left-16 top-20 h-48 w-48 rounded-full bg-[#0F6B78]/12 blur-3xl"
+                    aria-hidden
+                  />
+                  <div
+                    className="decor-blur pointer-events-none absolute -right-12 top-1/3 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl"
+                    aria-hidden
+                  />
+                </DecorBlurLayer>
                 <div
                   className="pointer-events-none absolute inset-0 opacity-[0.28] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
                   aria-hidden

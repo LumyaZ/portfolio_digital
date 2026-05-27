@@ -1,6 +1,7 @@
 "use client";
 
 import {useTranslations} from "next-intl";
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import {SKILLS} from "@/data/skill";
 
@@ -11,19 +12,21 @@ export default function PresentationHero() {
   const heroSkills = SKILLS.filter((s) => !HERO_EXCLUDED_SKILL_IDS.has(s.id));
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden">
+    <section className="relative flex min-h-screen flex-col overflow-x-clip">
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
-        aria-hidden
-      />
+      <DecorBlurLayer>
+        <div
+          className="decor-blur pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
+          aria-hidden
+        />
+      </DecorBlurLayer>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden
@@ -79,7 +82,7 @@ export default function PresentationHero() {
 
                   return (
                     <li key={skill.id} className="hero-skill-item group" style={{animationDelay: `${delay}s`}}>
-                      <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center shadow-sm transition duration-300 ease-out will-change-transform hover:z-10 hover:scale-[1.045] hover:border-[#0F6B78]/45 hover:shadow-lg hover:shadow-zinc-400/40">
+                      <div className="flex flex-col items-center gap-2 rounded-xl border border-zinc-200 bg-white px-2 py-3 text-center shadow-sm transition duration-300 ease-out will-change-transform hover:z-10 hover:scale-[1.045] hover:border-[#0F6B78]/45 hover:shadow-lg hover:shadow-zinc-400/40 max-sm:hover:scale-100 motion-reduce:hover:scale-100">
                         <img
                           src={skill.iconSrc}
                           alt={skill.name}

@@ -4,6 +4,7 @@ import {useEffect, useId, useMemo, useRef, useState} from "react";
 import {useTranslations} from "next-intl";
 import type {TrainingId} from "@/data/training";
 import {TRAINING_IDS} from "@/data/training";
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import {SKILLS} from "@/data/skill";
 
 const TRAINING_CARD_IO: IntersectionObserverInit = {
@@ -116,8 +117,6 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
     return undefined;
   }
 
-  const hiddenTranslate = alignLeft ? "-translate-x-10" : "translate-x-10";
-
   return (
     <li
       ref={ref}
@@ -126,8 +125,8 @@ function TrainingCard({id, index, t, skillIconByKey}: TrainingCardProps) {
         alignLeft
           ? "self-start pl-0 pr-4 sm:pr-6 md:pr-10"
           : "self-end pr-0 pl-4 sm:pl-6 md:pl-10",
-        "transition-[transform,opacity] duration-2200 ease-out will-change-transform motion-reduce:transition-none",
-        inView ? "translate-x-0 opacity-100" : `${hiddenTranslate} opacity-0 motion-reduce:translate-x-0 motion-reduce:opacity-100`,
+        "transition-opacity duration-2200 ease-out motion-reduce:transition-none",
+        inView ? "opacity-100" : "opacity-0 motion-reduce:opacity-100",
       ].join(" ")}
     >
       <article
@@ -220,41 +219,43 @@ export default function TrainingSection() {
   return (
     <section
       id="training"
-      className="relative overflow-hidden border-t border-zinc-200/90 pt-10 pb-16 sm:py-24"
+      className="relative overflow-x-clip border-t border-zinc-200/90 pt-10 pb-16 sm:py-24"
       aria-labelledby="training-heading"
     >
-      <div
+            <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_55%,#f4fafb_100%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
-        aria-hidden
-      />
+      <DecorBlurLayer>
+        <div
+          className="decor-blur pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
+          aria-hidden
+        />
+      </DecorBlurLayer>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.22] bg-[linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] bg-size-[18px_18px]"
         aria-hidden
@@ -271,7 +272,7 @@ export default function TrainingSection() {
         </header>
       </div>
 
-      <ul className="relative mt-12 flex w-full list-none flex-col gap-5 sm:mt-16 sm:gap-6 md:gap-8">
+      <ul className="relative mt-12 flex w-full list-none flex-col gap-5 overflow-x-hidden sm:mt-16 sm:gap-6 md:gap-8">
         {TRAINING_IDS.map((id, index) => (
           <TrainingCard
             key={id}

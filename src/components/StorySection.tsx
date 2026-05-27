@@ -1,6 +1,7 @@
 "use client";
 
 import {useCallback, useEffect, useId, useRef, useState} from "react";
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import {useTranslations} from "next-intl";
 
 const STORY_TAB_IDS = ["bts", "ynov", "alternance"] as const;
@@ -89,41 +90,43 @@ export default function StorySection() {
   return (
     <section
       id="story"
-      className="relative overflow-hidden border-t border-zinc-200/80 pt-12 pb-20 sm:py-28"
+      className="relative overflow-x-clip border-t border-zinc-200/80 pt-12 pb-20 sm:py-28"
       aria-labelledby="story-heading"
     >
-      <div
+            <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_55%,#f4fafb_100%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
-        aria-hidden
-      />
+      <DecorBlurLayer>
+        <div
+          className="decor-blur pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#0F6B78]/10 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-20 bottom-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-[#0F6B78]/12 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-8 top-1/2 h-56 w-56 rounded-full bg-[#0F6B78]/8 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-10 bottom-1/3 h-52 w-52 rounded-full bg-cyan-400/12 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute right-1/4 top-[15%] h-40 w-40 rounded-full bg-[#0F6B78]/10 blur-2xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute left-1/3 bottom-12 h-44 w-44 rounded-full bg-[#0F6B78]/9 blur-3xl"
+          aria-hidden
+        />
+      </DecorBlurLayer>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.22] bg-[linear-gradient(45deg,#0F6B7814_0%,#0F6B7814_10%,transparent_10%,transparent_50%,#0F6B7814_50%,#0F6B7814_60%,transparent_60%,transparent_100%)] bg-size-[18px_18px]"
         aria-hidden
@@ -149,7 +152,7 @@ export default function StorySection() {
           <div
             role="tablist"
             aria-label={t("tablistAria")}
-            className="flex flex-wrap items-end gap-0"
+            className="flex max-w-full flex-wrap items-end gap-0 overflow-x-clip"
             onKeyDown={onKeyDown}
           >
             {STORY_TAB_IDS.map((id) => {

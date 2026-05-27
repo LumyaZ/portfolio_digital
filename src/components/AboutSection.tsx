@@ -4,6 +4,7 @@ import type {CSSProperties} from "react";
 import {useCallback, useMemo, useState} from "react";
 import {useTranslations} from "next-intl";
 import type {Passion, PassionId} from "@/data/passion";
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import {PASSIONS} from "@/data/passion";
 
 function toPairRows(passions: readonly Passion[]): {left: Passion; right: Passion}[] {
@@ -71,7 +72,7 @@ function PassionPairCard({
       onClick={() => onToggleExpand(passion.id)}
       className={`about-stack-card flex min-h-0 w-full min-w-0 max-w-md touch-manipulation flex-col rounded-2xl border border-white/20 text-left shadow-lg transition-[box-shadow,transform] duration-300 ease-out sm:max-w-lg md:max-w-xl lg:min-w-0 lg:max-w-none lg:flex-1 lg:self-stretch focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F6B78] focus-visible:ring-2 focus-visible:ring-white/40 ${
         expanded
-          ? "relative z-70 max-sm:z-40 overflow-visible shadow-2xl ring-2 ring-white/35 ring-offset-2 ring-offset-transparent max-sm:ring-1 max-sm:ring-offset-0"
+          ? "relative z-70 max-sm:z-40 overflow-hidden shadow-2xl ring-2 ring-white/35 ring-offset-2 ring-offset-transparent max-sm:ring-1 max-sm:ring-offset-0"
           : "overflow-hidden"
       } cursor-pointer hover:brightness-[1.03] active:scale-[0.99] h-full ${side === "left" ? "lg:mr-0.5" : "lg:ml-0.5"} ${grad}`}
       style={{"--pair-row": rowIndex} as CSSProperties}
@@ -135,21 +136,23 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative overflow-visible border-t border-zinc-200/80 pt-10 pb-14 sm:py-20"
+      className="relative overflow-x-clip border-t border-zinc-200/80 pt-10 pb-14 sm:py-20"
       aria-labelledby="about-heading"
     >
-      <div
+            <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#0F6B78]/15 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"
-        aria-hidden
-      />
+      <DecorBlurLayer>
+        <div
+          className="decor-blur pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#0F6B78]/15 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"
+          aria-hidden
+        />
+      </DecorBlurLayer>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden

@@ -1,5 +1,6 @@
 import {getTranslations} from "next-intl/server";
 
+import DecorBlurLayer from "@/components/DecorBlurLayer";
 import ProjectCardsList from "@/components/ProjectCardsList";
 
 export default async function ProjectsSection() {
@@ -8,21 +9,23 @@ export default async function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden py-0"
+      className="relative overflow-x-clip py-0"
       aria-labelledby="projects-heading"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,#fafafa_0%,#ffffff_45%,#f4fafb_100%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#0F6B78]/15 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"
-        aria-hidden
-      />
+      <DecorBlurLayer>
+        <div
+          className="decor-blur pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#0F6B78]/15 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="decor-blur pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"
+          aria-hidden
+        />
+      </DecorBlurLayer>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(#0F6B78_0.8px,transparent_0.8px)] bg-size-[22px_22px]"
         aria-hidden
