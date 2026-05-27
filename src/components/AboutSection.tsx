@@ -87,8 +87,10 @@ function PassionPairCard({
             {titleText}
           </h3>
           <div
-            className={`mt-2 overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              expanded ? "max-h-[min(70vh,28rem)]" : "max-h-21 sm:max-h-24"
+            className={`mt-2 transition-[max-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              expanded
+                ? "max-h-[min(70vh,28rem)] overflow-hidden"
+                : "max-sm:max-h-none max-sm:overflow-visible overflow-hidden max-h-21 sm:max-h-24"
             }`}
           >
             <p
