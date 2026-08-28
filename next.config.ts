@@ -3,6 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  basePath: "/portfolio",
 };
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
