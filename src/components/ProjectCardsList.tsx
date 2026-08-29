@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { withBasePath } from "@/lib/utils";
 import {useTranslations} from "next-intl";
 import {useEffect, useMemo, useRef, useState} from "react";
 import type {ProjectId} from "@/data/projects";
@@ -119,7 +120,7 @@ export default function ProjectCardsList() {
                     >
                       {coverCard ? (
                         <Image
-                          src={coverCard}
+                          src={withBasePath(coverCard)}
                           alt=""
                           fill
                           className="object-contain object-center"
@@ -256,7 +257,7 @@ export default function ProjectCardsList() {
                       >
                         {isCraft2give ? (
                           <Image
-                            src={popupImage}
+                            src={withBasePath(popupImage)}
                             alt=""
                             fill
                             className="object-cover object-center"
@@ -264,7 +265,7 @@ export default function ProjectCardsList() {
                           />
                         ) : (
                           <Image
-                            src={popupImage}
+                            src={withBasePath(popupImage)}
                             alt=""
                             width={1600}
                             height={900}
@@ -325,7 +326,7 @@ export default function ProjectCardsList() {
                           >
                             <div className="relative h-12 w-16 sm:h-14 sm:w-20">
                               <Image
-                                src={src}
+                                src={withBasePath(src)}
                                 alt=""
                                 fill
                                 className="object-cover object-center transition-transform duration-200 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
@@ -384,7 +385,7 @@ export default function ProjectCardsList() {
                           <div className="relative bg-zinc-950">
                             <div className="relative mx-auto h-[min(52dvh,420px)] w-full max-w-5xl">
                               <Image
-                                src={musculiaGallery[musculiaIdx]}
+                                src={withBasePath(musculiaGallery[musculiaIdx])}
                                 alt=""
                                 fill
                                 className="object-contain object-center"
@@ -441,7 +442,7 @@ export default function ProjectCardsList() {
                                       }
                                     >
                                       <Image
-                                        src={src}
+                                        src={withBasePath(src)}
                                         alt=""
                                         fill
                                         className="object-cover object-center"
